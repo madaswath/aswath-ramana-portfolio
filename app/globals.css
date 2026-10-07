@@ -164,6 +164,25 @@
     outline: 2px solid #1b2d4f;
     outline-offset: 3px;
   }
+  #content > section {
+    display: none;
+  }
+  #content > section:target {
+    display: block;
+  }
+  #content:not(:has(> section:target)) > #top {
+    display: block;
+  }
+  html:has(#work:target) a[href="#work"],
+  html:has(#experience:target) a[href="#experience"],
+  html:has(#skills:target) a[href="#skills"],
+  html:has(#achievements:target) a[href="#achievements"],
+  html:has(#credentials:target) a[href="#credentials"],
+  html:has(#contact:target) a[href="#contact"],
+  html:not(:has(#content > section:target)) a[href="#top"] {
+    color: #1b2d4f;
+    font-weight: 600;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

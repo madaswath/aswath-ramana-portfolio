@@ -38,14 +38,6 @@ const achievementIcons: Record<string, LucideIcon> = {
   "Client handover": Bot,
 };
 
-const orbit = [
-  { label: "RAG", className: "top-8 left-6 bg-[#f3e7cf] text-[#1b2d4f]" },
-  { label: "Agents", className: "top-16 right-4 bg-white text-[#1b2d4f]" },
-  { label: "Azure", className: "top-1/2 right-0 bg-[#e7eef8] text-[#1b2d4f]" },
-  { label: "AWS", className: "bottom-16 left-2 bg-white text-[#1b2d4f]" },
-  { label: "NLP", className: "bottom-8 right-10 bg-[#1b2d4f] text-white" },
-];
-
 export function HomePage() {
   return (
     <>
@@ -56,9 +48,8 @@ export function HomePage() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="content">
+        <main id="content">
         <Hero />
-        <ProofBand />
         <Work />
         <Experience />
         <Capabilities />
@@ -194,12 +185,18 @@ function Hero() {
           </div>
         </div>
       </div>
-      <aside className="mt-10 rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm lg:hidden" aria-label="Profile">
-        <ProfileFacts />
-      </aside>
-      <aside className="mt-8 hidden rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm lg:block" aria-label="Profile">
-        <ProfileFacts />
-      </aside>
+      <div className="mt-8">
+        <ProofBand />
+      </div>
+      <details className="mt-6 rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm">
+        <summary className="cursor-pointer list-none font-semibold text-[#1b2d4f]">
+          Focus, industries, and platforms
+        </summary>
+        <div className="pt-6">
+          <ProfileFacts />
+        </div>
+      </details>
+      <SectionNav next={{ href: "#work", label: "Work" }} />
     </section>
   );
 }
@@ -271,16 +268,14 @@ function Chip({
 
 function ProofBand() {
   return (
-    <section aria-label="Headline outcomes" className="mx-auto w-full max-w-[1120px] px-5 py-8 md:px-8">
-      <div className="grid gap-6 rounded-3xl bg-[#1b2d4f] px-6 py-8 text-white sm:grid-cols-3 md:px-10">
+    <div aria-label="Headline outcomes" className="grid gap-6 rounded-3xl bg-[#1b2d4f] px-6 py-8 text-white sm:grid-cols-3 md:px-10">
         {metrics.slice(0, 3).map((metric) => (
           <div key={metric.label}>
             <p className="font-serif text-3xl text-[#e7d3a1] md:text-4xl">{metric.figure}</p>
             <p className="mt-2 text-sm text-[#d5deea]">{metric.label}</p>
           </div>
         ))}
-      </div>
-    </section>
+    </div>
   );
 }
 
@@ -288,66 +283,57 @@ function Work() {
   if (!featured) return null;
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+    <section id="work" aria-labelledby="work-heading">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
         <SectionIntro id="work-heading" kicker="Selected work" title="Systems" accent="shipped." />
-        <div className="mt-10">
+        <p className="mt-3 max-w-xl text-sm text-[#51627a]">
+          The featured system is open. Open any other row for the challenge, approach, and stack.
+        </p>
+        <div className="mt-6 space-y-3">
           <ProjectArticle project={featured} featured />
-        </div>
-        <div className="mt-5 space-y-5">
           {supporting.map((project) => (
             <ProjectArticle key={project.name} project={project} />
           ))}
-        </div>
-        <h3 className="mt-14 font-serif text-3xl text-[#1b2d4f]">
-          Further <span className="text-[#9a7840]">engagements</span>
-        </h3>
-        <div className="mt-6 grid gap-5 lg:grid-cols-2">
           {further.map((project) => (
-            <ProjectArticle key={project.name} project={project} compact />
+            <ProjectArticle key={project.name} project={project} />
           ))}
         </div>
+        <SectionNav prev={{ href: "#top", label: "Intro" }} next={{ href: "#experience", label: "Experience" }} />
       </div>
     </section>
   );
 }
 
-function ProjectArticle({
-  project,
-  featured = false,
-  compact = false,
-}: {
-  project: Project;
-  featured?: boolean;
-  compact?: boolean;
-}) {
+function ProjectArticle({ project, featured = false }: { project: Project; featured?: boolean }) {
+  const kind = featured ? "Featured" : project.placement === "supporting" ? "Selected" : "Further";
+
   return (
     <article className="overflow-hidden rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
-      <div className={featured ? "grid lg:grid-cols-12" : undefined}>
-        <div className={featured ? "border-b border-[#e4e9f1] p-6 md:p-8 lg:col-span-5 lg:border-r lg:border-b-0" : "border-b border-[#e4e9f1] p-6"}>
-          <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">
-            {featured ? "Featured" : "Project"} · {project.type}
-          </p>
-          <h3 className={`mt-3 font-serif tracking-tight text-[#1b2d4f] ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>
-            {project.name}
-          </h3>
-          <p className="mt-2 text-[#51627a]">{project.context}</p>
-        </div>
-        <dl className={featured ? "lg:col-span-7" : undefined}>
-          <Field label="Challenge" compact={compact}>
-            {project.challenge}
-          </Field>
-          <Field label="Approach" compact={compact}>
+      <details className="group" {...(featured ? { open: true } : {})}>
+        <summary className="cursor-pointer list-none p-5 md:p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">
+                {kind} · {project.type}
+              </p>
+              <h3 className="mt-2 font-serif text-2xl tracking-tight text-[#1b2d4f]">{project.name}</h3>
+              <p className="mt-1 text-sm text-[#51627a]">{project.context}</p>
+              <p className="mt-2 text-sm leading-6 text-[#31445f] group-open:hidden">{project.outcome}</p>
+            </div>
+            <DisclosureMark />
+          </div>
+        </summary>
+        <dl className="border-t border-[#eef1f6]">
+          <Field label="Challenge">{project.challenge}</Field>
+          <Field label="Approach">
             <ul className="list-disc space-y-2 pl-4">
               {project.approach.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ul>
           </Field>
-          <Field label="Outcome" compact={compact}>
-            {project.outcome}
-          </Field>
-          <Field label="Stack" compact={compact}>
+          <Field label="Outcome">{project.outcome}</Field>
+          <Field label="Stack">
             <ul className="flex flex-wrap gap-2">
               {project.tools.map((tool) => (
                 <li key={tool} className="rounded-full bg-[#eef2f7] px-2.5 py-1 text-xs text-[#1b2d4f]">
@@ -357,14 +343,14 @@ function ProjectArticle({
             </ul>
           </Field>
         </dl>
-      </div>
+      </details>
     </article>
   );
 }
 
-function Field({ label, children, compact }: { label: string; children: ReactNode; compact?: boolean }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className={`grid gap-1 border-t border-[#eef1f6] first:border-t-0 ${compact ? "px-6 py-4" : "px-6 py-5 md:px-8"}`}>
+    <div className="grid gap-1 border-t border-[#eef1f6] px-5 py-4 first:border-t-0 md:px-6">
       <dt className="text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">{label}</dt>
       <dd className="text-sm leading-6 text-[#31445f]">{children}</dd>
     </div>
@@ -373,8 +359,8 @@ function Field({ label, children, compact }: { label: string; children: ReactNod
 
 function Experience() {
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+    <section id="experience" aria-labelledby="experience-heading">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
         <SectionIntro id="experience-heading" kicker="Career journey" title="Professional" accent="experience" />
         <div className="mt-10 space-y-4">
           {experience.map((role, index) => (
@@ -398,9 +384,7 @@ function Experience() {
                       ) : null}
                     </div>
                   </div>
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-[#e4e9f1] text-lg text-[#1b2d4f] group-open:hidden">
-                    +
-                  </span>
+                  <DisclosureMark />
                 </div>
               </summary>
               <ul className="space-y-3 border-t border-[#eef1f6] px-6 py-5 text-sm leading-6 text-[#31445f]">
@@ -414,6 +398,7 @@ function Experience() {
             </details>
           ))}
         </div>
+        <SectionNav prev={{ href: "#work", label: "Work" }} next={{ href: "#skills", label: "Skills" }} />
       </div>
     </section>
   );
@@ -421,41 +406,31 @@ function Experience() {
 
 function Capabilities() {
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto grid w-full max-w-[1120px] gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(240px,0.8fr)] md:px-8 md:py-20">
-        <div>
-          <SectionIntro id="skills-heading" kicker="Expertise" title="Core" accent="capabilities" />
-          <div className="mt-8 space-y-4">
-            {capabilities.map((group) => (
-              <article key={group.category} className="rounded-3xl border border-[#e4e9f1] bg-white p-5 shadow-sm">
-                <h3 className="text-xs font-semibold tracking-[0.16em] text-[#51627a] uppercase">{group.category}</h3>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <li key={skill} className="rounded-full bg-[#eef2f7] px-3 py-1.5 text-sm text-[#1b2d4f]">
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className="relative hidden min-h-[460px] lg:block" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 grid size-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#1b2d4f] text-center text-white">
-            <span className="font-serif text-2xl">GenAI</span>
-          </div>
-          {orbit.map((node) => (
-            <span
-              key={node.label}
-              className={`absolute grid size-20 place-items-center rounded-full text-center text-sm font-semibold shadow-md ${node.className}`}
-            >
-              {node.label}
-            </span>
+    <section id="skills" aria-labelledby="skills-heading">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
+        <SectionIntro id="skills-heading" kicker="Expertise" title="Core" accent="capabilities" />
+        <p className="mt-3 text-sm text-[#51627a]">Open a group to see the tools in it.</p>
+        <div className="mt-6 space-y-3">
+          {capabilities.map((group) => (
+            <details key={group.category} className="group rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5">
+                <span>
+                  <span className="block font-serif text-2xl text-[#1b2d4f]">{group.category}</span>
+                  <span className="mt-1 block text-sm text-[#51627a]">{group.skills.length} skills</span>
+                </span>
+                <DisclosureMark />
+              </summary>
+              <ul className="flex flex-wrap gap-2 border-t border-[#eef1f6] px-5 py-4">
+                {group.skills.map((skill) => (
+                  <li key={skill} className="rounded-full bg-[#eef2f7] px-3 py-1.5 text-sm text-[#1b2d4f]">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </details>
           ))}
-          <p className="absolute right-0 bottom-0 left-0 text-center text-sm text-[#51627a]">
-            Production systems: retrieval, agents, language, and cloud delivery.
-          </p>
         </div>
+        <SectionNav prev={{ href: "#experience", label: "Experience" }} next={{ href: "#achievements", label: "Impact" }} />
       </div>
     </section>
   );
@@ -481,6 +456,7 @@ function Achievements() {
             );
           })}
         </ul>
+        <SectionNav prev={{ href: "#skills", label: "Skills" }} next={{ href: "#credentials", label: "Credentials" }} />
       </div>
     </section>
   );
@@ -513,6 +489,7 @@ function Credentials() {
             ))}
           </ul>
         </div>
+        <SectionNav prev={{ href: "#achievements", label: "Impact" }} next={{ href: "#contact", label: "Contact" }} />
       </div>
     </section>
   );
@@ -607,8 +584,50 @@ function Contact() {
             </div>
           </div>
         </div>
+        <SectionNav prev={{ href: "#credentials", label: "Credentials" }} />
       </div>
     </section>
+  );
+}
+
+function DisclosureMark() {
+  return (
+    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-[#e4e9f1] text-lg leading-none text-[#1b2d4f]">
+      <span className="group-open:hidden" aria-hidden="true">
+        +
+      </span>
+      <span className="hidden group-open:block" aria-hidden="true">
+        –
+      </span>
+    </span>
+  );
+}
+
+function SectionNav({
+  prev,
+  next,
+}: {
+  prev?: { href: string; label: string };
+  next?: { href: string; label: string };
+}) {
+  return (
+    <nav aria-label="Sections" className="mt-8 flex flex-col gap-3 border-t border-[#e4e9f1] pt-6 sm:flex-row sm:items-center sm:justify-between">
+      {prev ? (
+        <a href={prev.href} className="text-sm font-semibold text-[#51627a] hover:text-[#1b2d4f]">
+          Previous · {prev.label}
+        </a>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <a
+          href={next.href}
+          className="inline-flex h-11 items-center justify-center rounded-full bg-[#1b2d4f] px-5 text-sm font-semibold text-white"
+        >
+          Next · {next.label}
+        </a>
+      ) : null}
+    </nav>
   );
 }
 
