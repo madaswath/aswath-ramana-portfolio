@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Outfit } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -53,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

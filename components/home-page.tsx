@@ -1,12 +1,23 @@
 import type { ReactNode } from "react";
+import {
+  AudioLines,
+  Bot,
+  Clock3,
+  Link2,
+  Mail,
+  Phone,
+  ShieldCheck,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/site-header";
 import {
   capabilities,
   certifications,
   education,
   experience,
   metrics,
-  nav,
   person,
   profile,
   projects,
@@ -18,21 +29,21 @@ const featured = projects.find((project) => project.placement === "featured");
 const supporting = projects.filter((project) => project.placement === "supporting");
 const further = projects.filter((project) => project.placement === "further");
 
-const channels = [
-  { label: "Email", value: person.email, href: mailtoHref(person.email), external: false },
-  { label: "Phone", value: person.phone, href: telHref(person.phone), external: false },
-  {
-    label: "LinkedIn",
-    value: person.linkedin,
-    href: httpsHref(person.linkedin),
-    external: true,
-  },
-  {
-    label: "GitHub",
-    value: person.github,
-    href: httpsHref(person.github),
-    external: true,
-  },
+const achievementIcons: Record<string, LucideIcon> = {
+  "False-positive rate": ShieldCheck,
+  "Daily review time": Clock3,
+  "Employees evaluated": Users,
+  "Enterprise delivery": Bot,
+  "Developers led": Users,
+  "Call personas": AudioLines,
+};
+
+const orbit = [
+  { label: "RAG", className: "top-8 left-6 bg-[#f3e7cf] text-[#1b2d4f]" },
+  { label: "Agents", className: "top-16 right-4 bg-white text-[#1b2d4f]" },
+  { label: "Azure", className: "top-1/2 right-0 bg-[#e7eef8] text-[#1b2d4f]" },
+  { label: "AWS", className: "bottom-16 left-2 bg-white text-[#1b2d4f]" },
+  { label: "NLP", className: "bottom-8 right-10 bg-[#1b2d4f] text-white" },
 ];
 
 export function HomePage() {
@@ -40,17 +51,18 @@ export function HomePage() {
     <>
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-[#8ef0d2] focus:px-4 focus:py-2 focus:text-[#07111c]"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-[#1b2d4f] focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to content
       </a>
       <SiteHeader />
       <main id="content">
         <Hero />
-        <Metrics />
+        <ProofBand />
         <Work />
         <Experience />
         <Capabilities />
+        <Achievements />
         <Credentials />
         <Contact />
       </main>
@@ -79,117 +91,126 @@ export function HomePage() {
   );
 }
 
-function SiteHeader() {
-  return (
-    <header className="sticky top-0 border-b border-white/10 bg-[#081221]">
-      <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between md:px-8">
-        <a href="#top" className="text-[0.95rem] font-semibold tracking-tight">
-          <span className="sr-only">Home, </span>
-          {person.name}
-        </a>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-          <nav aria-label="Primary">
-            <ul className="flex flex-wrap gap-x-5 gap-y-2">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-sm text-[#d5deea] underline-offset-4 hover:text-[#8ef0d2] hover:underline"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <Button
-            nativeButton={false}
-            render={<a href="#contact" />}
-            className="h-9 rounded-sm px-3 text-sm font-semibold"
-          >
-            Get in touch
-          </Button>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 function Hero() {
+  const email = mailtoHref(person.email);
+  const phone = telHref(person.phone);
+  const linkedin = httpsHref(person.linkedin);
+  const github = httpsHref(person.github);
+
   return (
-    <section id="top" className="mx-auto w-full max-w-[1120px] px-5 pt-12 pb-16 md:px-8 md:pt-20 md:pb-24">
-      <p className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">
-        <span className="sr-only">Location: </span>
-        {person.location}
-      </p>
-      <h1 className="mt-4 max-w-[16ch] text-[clamp(3.4rem,11vw,7.4rem)] leading-[0.88] font-bold tracking-[-0.045em]">
-        {person.name}
-        <span className="mt-3 block max-w-[18ch] font-serif text-[clamp(1.7rem,4vw,3rem)] leading-tight font-normal tracking-normal text-[#e8894a] italic">
-          {person.role}
-        </span>
-      </h1>
-      <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-14">
+    <section id="top" className="mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
+      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
         <div>
-          <p className="max-w-[42rem] text-base leading-7 text-[#e7eef6] md:text-lg md:leading-8">
-            {person.summary}
+          <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
+            <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
+            {person.role}
+            <span className="text-[#c5ceda]" aria-hidden="true">
+              ·
+            </span>
+            <span className="tracking-normal text-[#51627a] normal-case">{person.location}</span>
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <h1 className="mt-5 font-serif text-[clamp(3.4rem,8vw,6.4rem)] leading-[0.9] tracking-tight text-[#1b2d4f]">
+            Aswath
+            <span className="block text-[#9a7840]">Ramana</span>
+          </h1>
+          <p className="mt-4 text-lg text-[#51627a]">
+            Technical Lead · RAG, multi-agent systems, and document intelligence
+          </p>
+          <p className="mt-5 max-w-xl text-base leading-7 text-[#31445f]">{person.summary}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button
               nativeButton={false}
               render={<a href="#work" />}
-              className="h-12 rounded-sm px-5 text-[0.95rem] font-semibold"
+              className="h-12 rounded-full px-5 text-sm font-semibold"
             >
-              Explore selected work
+              View selected work
             </Button>
             <Button
               nativeButton={false}
               render={<a href="#contact" />}
               variant="outline"
-              className="h-12 rounded-sm border-[#e8894a] bg-transparent px-5 text-[0.95rem] font-semibold text-[#e8894a] hover:bg-[#e8894a]/10 hover:text-[#e8894a]"
+              className="h-12 rounded-full border-[#d5dce6] bg-white px-5 text-sm font-semibold text-[#1b2d4f]"
             >
-              Start a conversation
+              Get in touch
             </Button>
+            {github ? (
+              <Button
+                nativeButton={false}
+                render={
+                  <a href={github} target="_blank" rel="noopener noreferrer" />
+                }
+                variant="outline"
+                className="h-12 rounded-full border-[#d5dce6] bg-white px-5 text-sm font-semibold text-[#1b2d4f]"
+              >
+                GitHub
+                <span className="sr-only"> (opens in a new tab)</span>
+              </Button>
+            ) : null}
           </div>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {email ? (
+              <li>
+                <Chip href={email} icon={Mail} label={person.email} />
+              </li>
+            ) : null}
+            {phone ? (
+              <li>
+                <Chip href={phone} icon={Phone} label={person.phone} />
+              </li>
+            ) : null}
+            {linkedin ? (
+              <li>
+                <Chip href={linkedin} icon={Link2} label="LinkedIn" external />
+              </li>
+            ) : null}
+          </ul>
         </div>
-        <aside
-          aria-label="Profile"
-          className="border border-white/12 bg-[#0c1930]"
-        >
-          <div className="h-1 bg-[#8ef0d2]" aria-hidden="true" />
-          <div className="space-y-6 p-6 md:p-7">
-            <div>
-              <p className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
-                Now
-              </p>
-              <p className="mt-2 text-lg font-semibold tracking-tight">
-                {profile.currentRole}
-              </p>
-              <p className="text-[#d5deea]">
-                {profile.currentCompany}
-                <span aria-hidden="true"> · </span>
-                <span className="sr-only">, </span>
-                {person.location}
-              </p>
-            </div>
-            <ProfileList title="Focus" items={profile.focus} />
-            <ProfileList title="Industries" items={profile.industries} />
-            <ProfileList title="Platforms" items={profile.platforms} />
+        <div className="relative mx-auto hidden h-[460px] w-full max-w-md lg:block" aria-hidden="true">
+          <div className="absolute inset-8 rounded-full border border-[#d7deea]" />
+          <div className="absolute inset-16 rounded-full border border-dashed border-[#c9d3e2]" />
+          <div className="absolute top-1/2 left-1/2 grid size-40 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[2rem] bg-[#1b2d4f] text-center text-white shadow-xl">
+            <p className="font-serif text-3xl leading-none">GenAI</p>
+            <p className="mt-2 px-4 text-xs tracking-[0.14em] text-[#e7d3a1] uppercase">In production</p>
           </div>
-        </aside>
+          <FloatCard className="top-6 right-2" figure="55% → 10%" label="False positives" />
+          <FloatCard className="bottom-16 left-0" figure="1,000+" label="Employees evaluated" />
+          <FloatCard className="right-0 bottom-8" figure="~3 days → ~3 hrs" label="Daily review" />
+        </div>
       </div>
+      <aside className="mt-10 rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm lg:hidden" aria-label="Profile">
+        <ProfileFacts />
+      </aside>
+      <aside className="mt-8 hidden rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm lg:block" aria-label="Profile">
+        <ProfileFacts />
+      </aside>
     </section>
   );
 }
 
-function ProfileList({ title, items }: { title: string; items: readonly string[] }) {
+function ProfileFacts() {
+  return (
+    <div className="grid gap-6 md:grid-cols-4">
+      <div>
+        <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">Now</p>
+        <p className="mt-2 font-semibold text-[#1b2d4f]">{profile.currentRole}</p>
+        <p className="text-sm text-[#51627a]">
+          {profile.currentCompany} · {person.location}
+        </p>
+      </div>
+      <FactList title="Focus" items={profile.focus} />
+      <FactList title="Industries" items={profile.industries} />
+      <FactList title="Platforms" items={profile.platforms} />
+    </div>
+  );
+}
+
+function FactList({ title, items }: { title: string; items: readonly string[] }) {
   return (
     <div>
-      <p className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
-        {title}
-      </p>
-      <ul className="mt-2 flex flex-wrap gap-2 text-sm leading-5 text-[#e7eef6]">
+      <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{title}</p>
+      <ul className="mt-2 flex flex-wrap gap-1.5 text-sm leading-5 text-[#31445f]">
         {items.map((item) => (
-          <li key={item} className="border border-white/15 px-2 py-1">
+          <li key={item} className="rounded-full bg-[#eef2f7] px-2.5 py-1">
             {item}
           </li>
         ))}
@@ -198,32 +219,49 @@ function ProfileList({ title, items }: { title: string; items: readonly string[]
   );
 }
 
-function Metrics() {
+function FloatCard({ className, figure, label }: { className: string; figure: string; label: string }) {
   return (
-    <section
-      id="achievements"
-      aria-labelledby="impact-heading"
-      className="scroll-mt-24 border-y border-white/10 bg-[#0c1930]/80 md:scroll-mt-14"
+    <div className={`absolute rounded-2xl border border-[#e4e9f1] bg-white px-4 py-3 shadow-lg ${className}`}>
+      <p className="text-lg font-bold tracking-tight text-[#1b2d4f]">{figure}</p>
+      <p className="text-xs text-[#51627a]">{label}</p>
+    </div>
+  );
+}
+
+function Chip({
+  href,
+  icon: Icon,
+  label,
+  external = false,
+}: {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+  external?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-2 text-sm text-[#31445f] hover:border-[#1b2d4f]"
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
-        <p className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">Impact</p>
-        <h2
-          id="impact-heading"
-          className="mt-3 max-w-[14ch] text-4xl leading-[1.05] font-bold tracking-tight md:text-5xl"
-        >
-          Outcomes that changed the work.
-        </h2>
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {metrics.map((metric) => (
-            <li key={metric.label} className="border border-white/10 bg-[#081221] p-6">
-              <p className="text-[clamp(1.7rem,3vw,2.35rem)] leading-none font-bold tracking-tight">
-                {metric.figure}
-              </p>
-              <p className="mt-4 font-serif text-xl text-[#e8894a] italic">{metric.label}</p>
-              <p className="mt-2 text-sm leading-6 text-[#d5deea]">{metric.detail}</p>
-            </li>
-          ))}
-        </ul>
+      <Icon className="size-4" aria-hidden="true" />
+      {label}
+      {external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+    </a>
+  );
+}
+
+function ProofBand() {
+  return (
+    <section aria-label="Headline outcomes" className="mx-auto w-full max-w-[1120px] px-5 py-8 md:px-8">
+      <div className="grid gap-6 rounded-3xl bg-[#1b2d4f] px-6 py-8 text-white sm:grid-cols-3 md:px-10">
+        {metrics.slice(0, 3).map((metric) => (
+          <div key={metric.label}>
+            <p className="font-serif text-3xl text-[#e7d3a1] md:text-4xl">{metric.figure}</p>
+            <p className="mt-2 text-sm text-[#d5deea]">{metric.label}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -233,27 +271,21 @@ function Work() {
   if (!featured) return null;
 
   return (
-    <section
-      id="work"
-      aria-labelledby="work-heading"
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 md:scroll-mt-14 px-5 py-16 md:px-8 md:py-24"
-    >
-      <SectionIntro
-        id="work-heading"
-        kicker="Selected work"
-        title="A featured build, then the record around it."
-      />
-      <div className="mt-10">
-        <ProjectArticle project={featured} featured />
-      </div>
-      <div className="mt-6 space-y-6">
-        {supporting.map((project) => (
-          <ProjectArticle key={project.name} project={project} />
-        ))}
-      </div>
-      <div className="mt-16">
-        <h3 className="font-serif text-3xl italic">Further engagements</h3>
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+    <section id="work" aria-labelledby="work-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <SectionIntro id="work-heading" kicker="Selected work" title="Systems" accent="shipped." />
+        <div className="mt-10">
+          <ProjectArticle project={featured} featured />
+        </div>
+        <div className="mt-5 space-y-5">
+          {supporting.map((project) => (
+            <ProjectArticle key={project.name} project={project} />
+          ))}
+        </div>
+        <h3 className="mt-14 font-serif text-3xl text-[#1b2d4f]">
+          Further <span className="text-[#9a7840]">engagements</span>
+        </h3>
+        <div className="mt-6 grid gap-5 lg:grid-cols-2">
           {further.map((project) => (
             <ProjectArticle key={project.name} project={project} compact />
           ))}
@@ -273,125 +305,98 @@ function ProjectArticle({
   compact?: boolean;
 }) {
   return (
-    <article className="border border-white/10 bg-[#0c1930]">
-      <div className={featured ? "grid lg:grid-cols-12" : "grid"}>
-        <div
-          className={
-            featured
-              ? "border-b border-white/10 p-6 md:p-8 lg:col-span-5 lg:border-r lg:border-b-0"
-              : "border-b border-white/10 p-6 md:p-7"
-          }
-        >
-          <p className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
-            {featured ? "Featured" : "Project"}
-            <span aria-hidden="true"> · </span>
-            <span className="sr-only">, type: </span>
-            {project.type}
+    <article className="overflow-hidden rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
+      <div className={featured ? "grid lg:grid-cols-12" : undefined}>
+        <div className={featured ? "border-b border-[#e4e9f1] p-6 md:p-8 lg:col-span-5 lg:border-r lg:border-b-0" : "border-b border-[#e4e9f1] p-6"}>
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">
+            {featured ? "Featured" : "Project"} · {project.type}
           </p>
-          <h3
-            className={
-              featured
-                ? "mt-4 text-3xl leading-tight font-bold tracking-tight md:text-4xl"
-                : "mt-3 text-2xl leading-tight font-bold tracking-tight"
-            }
-          >
+          <h3 className={`mt-3 font-serif tracking-tight text-[#1b2d4f] ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>
             {project.name}
           </h3>
-          <p className="mt-3 font-serif text-xl text-[#e8894a] italic md:text-2xl">
-            {project.context}
-          </p>
+          <p className="mt-2 text-[#51627a]">{project.context}</p>
         </div>
-        <div className={featured ? "lg:col-span-7" : undefined}>
-          <dl className="divide-y divide-white/10">
-            <Field label="Challenge" compact={compact}>
-              {project.challenge}
-            </Field>
-            <Field label="Approach" compact={compact}>
-              <ul className="list-disc space-y-2 pl-4">
-                {project.approach.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ul>
-            </Field>
-            <Field label="Outcome" compact={compact}>
-              {project.outcome}
-            </Field>
-            <Field label="Stack" compact={compact}>
-              <ul className="flex flex-wrap gap-2" aria-label="Technology stack">
-                {project.tools.map((tool) => (
-                  <li
-                    key={tool}
-                    className="border border-white/15 px-2 py-1 text-xs tracking-wide text-[#e7eef6]"
-                  >
-                    {tool}
-                  </li>
-                ))}
-              </ul>
-            </Field>
-          </dl>
-        </div>
+        <dl className={featured ? "lg:col-span-7" : undefined}>
+          <Field label="Challenge" compact={compact}>
+            {project.challenge}
+          </Field>
+          <Field label="Approach" compact={compact}>
+            <ul className="list-disc space-y-2 pl-4">
+              {project.approach.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ul>
+          </Field>
+          <Field label="Outcome" compact={compact}>
+            {project.outcome}
+          </Field>
+          <Field label="Stack" compact={compact}>
+            <ul className="flex flex-wrap gap-2">
+              {project.tools.map((tool) => (
+                <li key={tool} className="rounded-full bg-[#eef2f7] px-2.5 py-1 text-xs text-[#1b2d4f]">
+                  {tool}
+                </li>
+              ))}
+            </ul>
+          </Field>
+        </dl>
       </div>
     </article>
   );
 }
 
-function Field({
-  label,
-  children,
-  compact,
-}: {
-  label: string;
-  children: ReactNode;
-  compact?: boolean;
-}) {
+function Field({ label, children, compact }: { label: string; children: ReactNode; compact?: boolean }) {
   return (
-    <div className={compact ? "grid gap-2 px-6 py-4 md:px-7" : "grid gap-2 px-6 py-5 md:px-8"}>
-      <dt className="text-xs font-medium tracking-[0.16em] text-[#8ef0d2] uppercase">
-        {label}
-      </dt>
-      <dd className="text-sm leading-6 text-[#e7eef6]">{children}</dd>
+    <div className={`grid gap-1 border-t border-[#eef1f6] first:border-t-0 ${compact ? "px-6 py-4" : "px-6 py-5 md:px-8"}`}>
+      <dt className="text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">{label}</dt>
+      <dd className="text-sm leading-6 text-[#31445f]">{children}</dd>
     </div>
   );
 }
 
 function Experience() {
   return (
-    <section
-      id="experience"
-      aria-labelledby="experience-heading"
-      className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10"
-    >
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
-        <SectionIntro
-          id="experience-heading"
-          kicker="Experience"
-          title="Roles, places, and what changed."
-        />
-        <ol className="relative mt-12 space-y-12 border-l border-white/15 pl-0">
-          {experience.map((role) => (
-            <li key={`${role.company}-${role.dates}`} className="relative pl-8">
-              <span
-                className="absolute top-1.5 left-0 size-2.5 -translate-x-1/2 rounded-full bg-[#8ef0d2]"
-                aria-hidden="true"
-              />
-              <div className="grid gap-3 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
-                <p className="text-sm leading-6 text-[#d5deea]">
-                  <span className="block font-medium text-[#f4f7fb]">{role.dates}</span>
-                  {role.location}
-                </p>
-                <div>
-                  <h3 className="text-2xl font-bold tracking-tight">{role.company}</h3>
-                  <p className="mt-1 font-serif text-xl text-[#e8894a] italic">{role.role}</p>
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-[#e7eef6]">
-                    {role.achievements.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
+    <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <SectionIntro id="experience-heading" kicker="Career journey" title="Professional" accent="experience" />
+        <div className="mt-10 space-y-4">
+          {experience.map((role, index) => (
+            <details
+              key={`${role.company}-${role.dates}`}
+              open={index === 0}
+              className="group rounded-3xl border border-[#e4e9f1] bg-white shadow-sm"
+            >
+              <summary className="cursor-pointer list-none p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{role.company}</p>
+                    <h3 className="mt-2 font-serif text-2xl text-[#1b2d4f] md:text-3xl">{role.role}</h3>
+                    <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-[#51627a]">
+                      <span className="rounded-full bg-[#eef2f7] px-3 py-1 text-[#1b2d4f]">{role.dates}</span>
+                      <span>{role.span}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{role.location}</span>
+                      {role.current ? (
+                        <span className="rounded-full bg-[#e7f6ee] px-3 py-1 text-[#146c43]">Current role</span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-[#e4e9f1] text-lg text-[#1b2d4f] group-open:hidden">
+                    +
+                  </span>
                 </div>
-              </div>
-            </li>
+              </summary>
+              <ul className="space-y-3 border-t border-[#eef1f6] px-6 py-5 text-sm leading-6 text-[#31445f]">
+                {role.achievements.map((line) => (
+                  <li key={line} className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );
@@ -399,35 +404,66 @@ function Experience() {
 
 function Capabilities() {
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
-        <SectionIntro
-          id="skills-heading"
-          kicker="Skills"
-          title="Capabilities, grouped for the work."
-        />
-        <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
-          {capabilities.map((group) => (
-            <article
-              key={group.category}
-              className="grid gap-4 py-8 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-10"
-            >
-              <h3 className="font-serif text-3xl leading-tight text-[#f4f7fb] italic">
-                {group.category}
-              </h3>
-              <ul className="flex flex-wrap content-start gap-2" aria-label={group.category}>
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="border border-white/15 px-2.5 py-1 text-sm text-[#e7eef6]"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto grid w-full max-w-[1120px] gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(240px,0.8fr)] md:px-8 md:py-20">
+        <div>
+          <SectionIntro id="skills-heading" kicker="Expertise" title="Core" accent="capabilities" />
+          <div className="mt-8 space-y-4">
+            {capabilities.map((group) => (
+              <article key={group.category} className="rounded-3xl border border-[#e4e9f1] bg-white p-5 shadow-sm">
+                <h3 className="text-xs font-semibold tracking-[0.16em] text-[#51627a] uppercase">{group.category}</h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <li key={skill} className="rounded-full bg-[#eef2f7] px-3 py-1.5 text-sm text-[#1b2d4f]">
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
+        <div className="relative hidden min-h-[460px] lg:block" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 grid size-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#1b2d4f] text-center text-white">
+            <span className="font-serif text-2xl">GenAI</span>
+          </div>
+          {orbit.map((node) => (
+            <span
+              key={node.label}
+              className={`absolute grid size-20 place-items-center rounded-full text-center text-sm font-semibold shadow-md ${node.className}`}
+            >
+              {node.label}
+            </span>
+          ))}
+          <p className="absolute right-0 bottom-0 left-0 text-center text-sm text-[#51627a]">
+            Production systems: retrieval, agents, language, and cloud delivery.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Achievements() {
+  return (
+    <section id="achievements" aria-labelledby="impact-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <SectionIntro id="impact-heading" kicker="Impact metrics" title="Key" accent="outcomes" />
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {metrics.map((metric) => {
+            const Icon = achievementIcons[metric.label] ?? Bot;
+            return (
+              <li key={metric.label} className="rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm">
+                <span className="grid size-10 place-items-center rounded-xl bg-[#1b2d4f] text-white">
+                  <Icon className="size-5" aria-hidden="true" />
+                </span>
+                <p className="mt-5 font-serif text-3xl tracking-tight text-[#1b2d4f]">{metric.figure}</p>
+                <p className="mt-2 font-semibold text-[#1b2d4f]">{metric.label}</p>
+                <p className="mt-2 text-sm leading-6 text-[#51627a]">{metric.detail}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
@@ -435,40 +471,30 @@ function Capabilities() {
 
 function Credentials() {
   return (
-    <section aria-labelledby="credentials-heading" className="border-t border-white/10">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
-        <SectionIntro
-          id="credentials-heading"
-          kicker="Record"
-          title="Credentials and education."
-        />
-        <div className="mt-12 grid gap-12 md:grid-cols-2">
-          <div>
-            <h3 className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
-              Certifications
-            </h3>
-            <ul className="mt-5 space-y-4">
-              {certifications.map((item) => (
-                <li key={item} className="border-l-2 border-[#e8894a] pl-4 text-base leading-6">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
-              Education
-            </h3>
-            <ul className="mt-5 space-y-6">
-              {education.map((item) => (
-                <li key={item.school} className="border-l-2 border-[#8ef0d2] pl-4">
-                  <p className="text-lg font-semibold tracking-tight">{item.school}</p>
-                  <p className="mt-1 font-serif text-lg text-[#e8894a] italic">{item.credential}</p>
-                  <p className="mt-1 text-sm text-[#d5deea]">{item.dates}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <section id="credentials" aria-labelledby="credentials-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <SectionIntro id="credentials-heading" kicker="Credentials" title="Certifications" />
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {certifications.map((item) => (
+            <li key={item} className="rounded-3xl border border-[#e4e9f1] bg-white p-5 shadow-sm">
+              <span className="grid size-10 place-items-center rounded-xl bg-[#1b2d4f] font-serif text-sm text-[#e7d3a1]">
+                AI
+              </span>
+              <p className="mt-4 font-semibold text-[#1b2d4f]">{item}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-16">
+          <SectionIntro id="education-heading" kicker="Academic background" title="Education" />
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
+            {education.map((item) => (
+              <li key={item.school} className="rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm">
+                <p className="font-serif text-2xl text-[#1b2d4f]">{item.credential}</p>
+                <p className="mt-2 text-[#9a7840]">{item.school}</p>
+                <p className="mt-1 text-sm text-[#51627a]">{item.dates}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -476,51 +502,94 @@ function Credentials() {
 }
 
 function Contact() {
+  const email = mailtoHref(person.email);
+  const phone = telHref(person.phone);
+  const linkedin = httpsHref(person.linkedin);
+  const github = httpsHref(person.github);
+
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
-        <h2 id="contact-heading" className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">
-          Contact
-        </h2>
-        <p className="mt-3 max-w-[16ch] text-[clamp(2.4rem,6vw,4.5rem)] leading-[0.95] font-bold tracking-tight">
-          Start a{" "}
-          <span className="font-serif font-normal text-[#e8894a] italic">conversation.</span>
-        </p>
-        <p className="mt-6 max-w-xl text-base leading-7 text-[#d5deea]">
-          Email, phone, LinkedIn, and GitHub are the direct ways to reach {person.name}.
-        </p>
-        <ul className="mt-10 border-b border-white/10">
-          {channels.map((channel) => (
-            <li key={channel.label}>
-              {channel.href ? (
-                <a
-                  href={channel.href}
-                  className="flex min-h-16 flex-col justify-center gap-1 border-t border-white/10 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-                  {...(channel.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  <span className="text-xs font-medium tracking-[0.16em] text-[#8ef0d2] uppercase">
-                    {channel.label}
-                  </span>
-                  <span className="text-base font-medium break-all sm:text-lg">
-                    {channel.value}
-                    {channel.external ? (
+    <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 md:scroll-mt-20">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <div className="rounded-[2rem] bg-[#1b2d4f] px-6 py-10 text-white md:px-12 md:py-14">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div>
+              <h2 id="contact-heading" className="font-serif text-4xl md:text-5xl">
+                Let&apos;s <span className="text-[#e7d3a1]">talk.</span>
+              </h2>
+              <p className="mt-4 max-w-xl text-[#d5deea]">
+                Production GenAI for banking, insurance, and financial services. Email, call, or open the profiles below.
+              </p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {email ? (
+                  <li>
+                    <a href={email} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
+                      <Mail className="size-4" aria-hidden="true" />
+                      {person.email}
+                    </a>
+                  </li>
+                ) : null}
+                {phone ? (
+                  <li>
+                    <a href={phone} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
+                      <Phone className="size-4" aria-hidden="true" />
+                      {person.phone}
+                    </a>
+                  </li>
+                ) : null}
+                {linkedin ? (
+                  <li>
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
+                    >
+                      <Link2 className="size-4" aria-hidden="true" />
+                      LinkedIn
                       <span className="sr-only"> (opens in a new tab)</span>
-                    ) : null}
-                  </span>
-                </a>
-              ) : (
-                <div className="flex min-h-16 flex-col justify-center gap-1 border-t border-white/10 py-4 sm:flex-row sm:items-baseline sm:justify-between">
-                  <span className="text-xs font-medium tracking-[0.16em] text-[#8ef0d2] uppercase">
-                    {channel.label}
-                  </span>
-                  <span className="text-base font-medium break-all">{channel.value}</span>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+                    </a>
+                  </li>
+                ) : null}
+                {github ? (
+                  <li>
+                    <a
+                      href={github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
+                    >
+                      <Link2 className="size-4" aria-hidden="true" />
+                      GitHub
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </li>
+                ) : null}
+              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              {email ? (
+                <Button
+                  nativeButton={false}
+                  render={<a href={email} />}
+                  className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
+                >
+                  Email me
+                </Button>
+              ) : null}
+              {linkedin ? (
+                <Button
+                  nativeButton={false}
+                  render={<a href={linkedin} target="_blank" rel="noopener noreferrer" />}
+                  variant="outline"
+                  className="h-12 rounded-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10"
+                >
+                  View LinkedIn
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -528,16 +597,10 @@ function Contact() {
 
 function SiteFooter() {
   return (
-    <footer className="border-t border-white/10">
-      <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-2 px-5 py-8 text-sm text-[#d5deea] md:flex-row md:items-center md:justify-between md:px-8">
-        <p>{person.name}</p>
-        <p>
-          {person.role}
-          <span aria-hidden="true"> · </span>
-          <span className="sr-only">, </span>
-          {person.location}
-        </p>
-      </div>
+    <footer className="border-t border-[#e4e9f1]">
+      <p className="mx-auto w-full max-w-[1120px] px-5 py-8 text-center text-sm text-[#51627a] md:px-8">
+        {person.name} · {person.role} · {person.location}
+      </p>
     </footer>
   );
 }
@@ -546,16 +609,22 @@ function SectionIntro({
   id,
   kicker,
   title,
+  accent,
 }: {
   id: string;
   kicker: string;
   title: string;
+  accent?: string;
 }) {
   return (
     <div>
-      <p className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">{kicker}</p>
-      <h2 id={id} className="mt-3 max-w-[18ch] text-4xl leading-[1.05] font-bold tracking-tight md:text-5xl">
+      <p className="flex items-center gap-3 text-xs font-semibold tracking-[0.18em] text-[#9a7840] uppercase">
+        <span className="h-px w-8 bg-[#9a7840]" aria-hidden="true" />
+        {kicker}
+      </p>
+      <h2 id={id} className="mt-3 font-serif text-4xl tracking-tight text-[#1b2d4f] md:text-5xl">
         {title}
+        {accent ? <span className="text-[#9a7840]"> {accent}</span> : null}
       </h2>
     </div>
   );

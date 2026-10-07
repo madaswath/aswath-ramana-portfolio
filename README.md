@@ -1,6 +1,6 @@
 # Aswath Ramana
 
-One-page portfolio for Aswath Ramana, Senior GenAI Engineer in Chennai. The page is an editorial layout: navy ground, mint and warm orange accents, and a serif italic used against a heavy sans.
+One-page portfolio for Aswath Ramana, Senior GenAI Engineer in Chennai. The page uses a light navy-and-gold theme: serif headlines, proof cards, grouped capabilities, and a direct contact panel.
 
 Copy, employers, projects, dates, and figures come from the resume. They live in `lib/content.ts`.
 
