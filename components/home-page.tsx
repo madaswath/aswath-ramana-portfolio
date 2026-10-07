@@ -87,20 +87,29 @@ function SiteHeader() {
           <span className="sr-only">Home, </span>
           {person.name}
         </a>
-        <nav aria-label="Primary">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-sm text-[#d5deea] underline-offset-4 hover:text-[#8ef0d2] hover:underline"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <nav aria-label="Primary">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="text-sm text-[#d5deea] underline-offset-4 hover:text-[#8ef0d2] hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <Button
+            nativeButton={false}
+            render={<a href="#contact" />}
+            className="h-9 rounded-sm px-3 text-sm font-semibold"
+          >
+            Get in touch
+          </Button>
+        </div>
       </div>
     </header>
   );
@@ -191,31 +200,30 @@ function ProfileList({ title, items }: { title: string; items: readonly string[]
 
 function Metrics() {
   return (
-    <section aria-labelledby="impact-heading" className="border-y border-white/10 bg-[#0c1930]/80">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-14 md:px-8 md:py-16">
-        <h2 id="impact-heading" className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">
-          Impact
+    <section
+      id="achievements"
+      aria-labelledby="impact-heading"
+      className="scroll-mt-24 border-y border-white/10 bg-[#0c1930]/80 md:scroll-mt-14"
+    >
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+        <p className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">Impact</p>
+        <h2
+          id="impact-heading"
+          className="mt-3 max-w-[14ch] text-4xl leading-[1.05] font-bold tracking-tight md:text-5xl"
+        >
+          Outcomes that changed the work.
         </h2>
-        <p className="mt-3 max-w-[20ch] font-serif text-3xl text-[#f4f7fb] italic md:text-4xl">
-          Three measured outcomes.
-        </p>
-        <ol className="mt-10 grid gap-10 md:grid-cols-3 md:gap-8">
-          {metrics.map((metric, index) => (
-            <li
-              key={metric.label}
-              className="border-t border-white/10 pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-6 md:first:border-l-0 md:first:pl-0"
-            >
-              <p className="font-serif text-sm text-[#e8894a] italic">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <p className="mt-3 text-[clamp(1.8rem,4vw,2.6rem)] leading-none font-bold tracking-tight">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {metrics.map((metric) => (
+            <li key={metric.label} className="border border-white/10 bg-[#081221] p-6">
+              <p className="text-[clamp(1.7rem,3vw,2.35rem)] leading-none font-bold tracking-tight">
                 {metric.figure}
               </p>
-              <p className="mt-3 text-base font-semibold">{metric.label}</p>
+              <p className="mt-4 font-serif text-xl text-[#e8894a] italic">{metric.label}</p>
               <p className="mt-2 text-sm leading-6 text-[#d5deea]">{metric.detail}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );

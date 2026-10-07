@@ -37,20 +37,32 @@ export const metrics = [
   {
     figure: "55% → 10%",
     label: "False-positive rate",
-    detail:
-      "Sanctions screening on millions of banking transactions.",
+    detail: "Sanctions screening on millions of banking transactions.",
   },
   {
     figure: "~3 days → ~3 hours",
-    label: "Flagged-transaction review",
-    detail:
-      "Daily batch time, with 2% escalated for manual review.",
+    label: "Daily review time",
+    detail: "Flagged-transaction batches, with 2% escalated for manual review.",
   },
   {
     figure: "1,000+",
-    label: "Employees on the voice simulator",
-    detail:
-      "Insurance mock-call evaluations running in production.",
+    label: "Employees evaluated",
+    detail: "Insurance voice simulator used for production mock-call evaluations.",
+  },
+  {
+    figure: "7+ years",
+    label: "Enterprise delivery",
+    detail: "AI/ML systems across banking, insurance, and financial services.",
+  },
+  {
+    figure: "5–6",
+    label: "Developers led",
+    detail: "RAG microservices and LangGraph orchestration, mentoring 2–3 junior engineers.",
+  },
+  {
+    figure: "~50",
+    label: "Call personas",
+    detail: "Dynamic personas and difficulty levels in the insurance training simulator.",
   },
 ] as const;
 
@@ -467,6 +479,7 @@ export const education = [
 export const nav = [
   { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
+  { href: "#achievements", label: "Impact" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
 ] as const;
