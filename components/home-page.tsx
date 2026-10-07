@@ -81,7 +81,7 @@ export function HomePage() {
 
 function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#081221]/88 backdrop-blur-md">
+    <header className="sticky top-0 border-b border-white/10 bg-[#081221]">
       <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between md:px-8">
         <a href="#top" className="text-[0.95rem] font-semibold tracking-tight">
           <span className="sr-only">Home, </span>
@@ -178,9 +178,11 @@ function ProfileList({ title, items }: { title: string; items: readonly string[]
       <p className="text-xs font-medium tracking-[0.18em] text-[#8ef0d2] uppercase">
         {title}
       </p>
-      <ul className="mt-2 space-y-1.5 text-sm leading-6 text-[#e7eef6]">
+      <ul className="mt-2 flex flex-wrap gap-2 text-sm leading-5 text-[#e7eef6]">
         {items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item} className="border border-white/15 px-2 py-1">
+            {item}
+          </li>
         ))}
       </ul>
     </div>
@@ -226,7 +228,7 @@ function Work() {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-16 md:px-8 md:py-24"
+      className="mx-auto w-full max-w-[1120px] scroll-mt-24 md:scroll-mt-14 px-5 py-16 md:px-8 md:py-24"
     >
       <SectionIntro
         id="work-heading"
@@ -243,9 +245,6 @@ function Work() {
       </div>
       <div className="mt-16">
         <h3 className="font-serif text-3xl italic">Further engagements</h3>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#d5deea]">
-          The rest of the project record, with the same fields: type, challenge, approach, outcome, and stack.
-        </p>
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {further.map((project) => (
             <ProjectArticle key={project.name} project={project} compact />
@@ -352,7 +351,7 @@ function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-24 border-t border-white/10"
+      className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10"
     >
       <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
         <SectionIntro
@@ -392,7 +391,7 @@ function Experience() {
 
 function Capabilities() {
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24 border-t border-white/10">
+    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
         <SectionIntro
           id="skills-heading"
@@ -470,8 +469,8 @@ function Credentials() {
 
 function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="border-t border-white/10">
-      <div className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-16 md:px-8 md:py-24">
+    <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 md:scroll-mt-14 border-t border-white/10">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-24">
         <h2 id="contact-heading" className="text-xs font-medium tracking-[0.22em] text-[#8ef0d2] uppercase">
           Contact
         </h2>

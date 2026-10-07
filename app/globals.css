@@ -126,7 +126,6 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
   }
   body {
     @apply bg-background text-foreground;
@@ -148,6 +147,9 @@
   body > * {
     position: relative;
     z-index: 1;
+  }
+  body > header {
+    z-index: 40;
   }
   ::selection {
     background: #e8894a;
