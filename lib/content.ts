@@ -16,8 +16,8 @@ export const profile = {
   focus: [
     "Production-grade RAG pipelines",
     "Multi-agent orchestration (LangGraph, LangChain)",
-    "Text-to-SQL systems",
-    "Intelligent document processing",
+    "Text-to-SQL and intelligent document processing",
+    "Full lifecycle delivery on AWS and Azure",
   ],
   industries: ["Banking", "Insurance", "Financial services"],
   platforms: [
@@ -46,13 +46,8 @@ export const metrics = [
   },
   {
     figure: "1,000+",
-    label: "Employees evaluated",
-    detail: "Insurance voice simulator used for production mock-call evaluations.",
-  },
-  {
-    figure: "7+ years",
-    label: "Enterprise delivery",
-    detail: "AI/ML systems across banking, insurance, and financial services.",
+    label: "Production users",
+    detail: "Insurance voice simulator deployed for employee evaluations.",
   },
   {
     figure: "5–6",
@@ -60,9 +55,14 @@ export const metrics = [
     detail: "RAG microservices and LangGraph orchestration, mentoring 2–3 junior engineers.",
   },
   {
-    figure: "~50",
-    label: "Call personas",
-    detail: "Dynamic personas and difficulty levels in the insurance training simulator.",
+    figure: "3–5",
+    label: "Client teams led",
+    detail: "Translated client requirements into architectures and coordinated data access with department heads.",
+  },
+  {
+    figure: "2 phases",
+    label: "Client handover",
+    detail: "Live BI assistant delivered through client handover, with AWS releases on GitLab and CloudBees.",
   },
 ] as const;
 

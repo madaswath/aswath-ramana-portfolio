@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  AudioLines,
   Bot,
   Clock3,
   Link2,
@@ -33,10 +32,10 @@ const further = projects.filter((project) => project.placement === "further");
 const achievementIcons: Record<string, LucideIcon> = {
   "False-positive rate": ShieldCheck,
   "Daily review time": Clock3,
-  "Employees evaluated": Users,
-  "Enterprise delivery": Bot,
+  "Production users": Users,
   "Developers led": Users,
-  "Call personas": AudioLines,
+  "Client teams led": Users,
+  "Client handover": Bot,
 };
 
 const orbit = [
@@ -115,7 +114,7 @@ function Hero() {
             <span className="block text-[#9a7840]">Ramana</span>
           </h1>
           <p className="mt-4 text-lg text-[#51627a]">
-            Technical Lead · RAG, multi-agent systems, and document intelligence
+            Technical lead for production GenAI. RAG, agents, and client delivery on AWS and Azure.
           </p>
           <div className="relative mx-auto mt-6 aspect-square w-56 overflow-hidden rounded-[1.6rem] border-4 border-white shadow-lg lg:hidden">
             <Image
@@ -190,7 +189,7 @@ function Hero() {
           </div>
           <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
             <FloatCard className="top-4 right-0" figure="55% → 10%" label="False positives" />
-            <FloatCard className="bottom-20 left-0" figure="1,000+" label="Employees evaluated" />
+            <FloatCard className="bottom-20 left-0" figure="1,000+" label="Production users" />
             <FloatCard className="right-0 bottom-6" figure="~3 days → ~3 hrs" label="Daily review" />
           </div>
         </div>
@@ -535,7 +534,7 @@ function Contact() {
                 Let&apos;s <span className="text-[#e7d3a1]">talk.</span>
               </h2>
               <p className="mt-4 max-w-xl text-[#d5deea]">
-                Production GenAI for banking, insurance, and financial services. Email, call, or open the profiles below.
+                For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, or open the profiles below.
               </p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {email ? (
