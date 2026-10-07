@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import {
   AudioLines,
   Bot,
@@ -116,6 +117,15 @@ function Hero() {
           <p className="mt-4 text-lg text-[#51627a]">
             Technical Lead · RAG, multi-agent systems, and document intelligence
           </p>
+          <div className="relative mx-auto mt-6 aspect-square w-56 overflow-hidden rounded-[1.6rem] border-4 border-white shadow-lg lg:hidden">
+            <Image
+              src="/aswath-ramana.jpg"
+              alt="Aswath Ramana, Senior GenAI Engineer, in a navy suit"
+              fill
+              sizes="224px"
+              className="object-cover object-[center_18%]"
+            />
+          </div>
           <p className="mt-5 max-w-xl text-base leading-7 text-[#31445f]">{person.summary}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button
@@ -165,16 +175,24 @@ function Hero() {
             ) : null}
           </ul>
         </div>
-        <div className="relative mx-auto hidden h-[460px] w-full max-w-md lg:block" aria-hidden="true">
-          <div className="absolute inset-8 rounded-full border border-[#d7deea]" />
-          <div className="absolute inset-16 rounded-full border border-dashed border-[#c9d3e2]" />
-          <div className="absolute top-1/2 left-1/2 grid size-40 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[2rem] bg-[#1b2d4f] text-center text-white shadow-xl">
-            <p className="font-serif text-3xl leading-none">GenAI</p>
-            <p className="mt-2 px-4 text-xs tracking-[0.14em] text-[#e7d3a1] uppercase">In production</p>
+        <div className="relative mx-auto hidden w-full max-w-sm lg:block lg:h-[500px] lg:max-w-md">
+          <div className="pointer-events-none absolute inset-6 hidden rounded-full border border-[#d7deea] lg:block" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-14 hidden rounded-full border border-dashed border-[#c9d3e2] lg:block" aria-hidden="true" />
+          <div className="relative mx-auto aspect-square w-[86%] overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:absolute lg:top-1/2 lg:left-1/2 lg:w-[68%] lg:-translate-x-1/2 lg:-translate-y-1/2">
+            <Image
+              src="/aswath-ramana.jpg"
+              alt="Aswath Ramana, Senior GenAI Engineer, in a navy suit"
+              fill
+              priority
+              sizes="(min-width: 1024px) 320px, 80vw"
+              className="object-cover object-[center_18%]"
+            />
           </div>
-          <FloatCard className="top-6 right-2" figure="55% → 10%" label="False positives" />
-          <FloatCard className="bottom-16 left-0" figure="1,000+" label="Employees evaluated" />
-          <FloatCard className="right-0 bottom-8" figure="~3 days → ~3 hrs" label="Daily review" />
+          <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+            <FloatCard className="top-4 right-0" figure="55% → 10%" label="False positives" />
+            <FloatCard className="bottom-20 left-0" figure="1,000+" label="Employees evaluated" />
+            <FloatCard className="right-0 bottom-6" figure="~3 days → ~3 hrs" label="Daily review" />
+          </div>
         </div>
       </div>
       <aside className="mt-10 rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm lg:hidden" aria-label="Profile">
