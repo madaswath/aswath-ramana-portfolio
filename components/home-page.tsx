@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import Image from "next/image";
 import {
   Bot,
@@ -11,7 +10,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SectionStage } from "@/components/section-stage";
 import { SiteHeader } from "@/components/site-header";
 import {
   capabilities,
@@ -25,10 +23,6 @@ import {
   type Project,
 } from "@/lib/content";
 import { httpsHref, mailtoHref, telHref } from "@/lib/links";
-
-const featured = projects.find((project) => project.placement === "featured");
-const supporting = projects.filter((project) => project.placement === "supporting");
-const further = projects.filter((project) => project.placement === "further");
 
 const achievementIcons: Record<string, LucideIcon> = {
   "False-positive rate": ShieldCheck,
@@ -50,15 +44,13 @@ export function HomePage() {
       </a>
       <SiteHeader />
       <main id="content">
-        <SectionStage>
-          <Hero />
-          <Work />
-          <Experience />
-          <Capabilities />
-          <Achievements />
-          <Credentials />
-          <Contact />
-        </SectionStage>
+        <Hero />
+        <Work />
+        <Experience />
+        <Capabilities />
+        <Achievements />
+        <Credentials />
+        <Contact />
       </main>
       <script
         type="application/ld+json"
@@ -86,7 +78,7 @@ export function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
+    <section id="top" className="scroll-mt-24 mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
@@ -205,21 +197,12 @@ function ProofBand() {
 }
 
 function Work() {
-  if (!featured) return null;
-
   return (
-    <section id="work" aria-labelledby="work-heading">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
+    <section id="work" aria-labelledby="work-heading" className="scroll-mt-24">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8">
         <SectionIntro id="work-heading" title="Selected projects" />
-        <p className="mt-3 max-w-xl text-sm text-[#51627a]">
-          Open a project for the business context, contributions, and tools.
-        </p>
-        <div className="mt-6 space-y-3">
-          <ProjectArticle project={featured} featured />
-          {supporting.map((project) => (
-            <ProjectArticle key={project.name} project={project} />
-          ))}
-          {further.map((project) => (
+        <div className="mt-8 space-y-8">
+          {projects.map((project) => (
             <ProjectArticle key={project.name} project={project} />
           ))}
         </div>
@@ -228,88 +211,59 @@ function Work() {
   );
 }
 
-function ProjectArticle({ project, featured = false }: { project: Project; featured?: boolean }) {
-  const kind = project.type;
-
+function ProjectArticle({ project }: { project: Project }) {
   return (
-    <article className="overflow-hidden rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
-      <details className="group" {...(featured ? { open: true } : {})}>
-        <summary className="cursor-pointer list-none p-5 md:p-6">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{kind}</p>
-              <h3 className="mt-2 font-serif text-2xl tracking-tight text-[#1b2d4f]">{project.name}</h3>
-              <p className="mt-1 text-sm text-[#51627a]">{project.context}</p>
-              <p className="mt-2 text-sm leading-6 text-[#31445f] group-open:hidden">{project.outcome}</p>
-            </div>
-            <DisclosureMark />
-          </div>
-        </summary>
-        <dl className="border-t border-[#eef1f6]">
-          <Field label="Business context">{project.challenge}</Field>
-          <Field label="Contributions">
-            <ul className="list-disc space-y-2 pl-4">
-              {project.approach.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ul>
-          </Field>
-          <Field label="Outcome">{project.outcome}</Field>
-          <Field label="Tools">
-            <ul className="flex flex-wrap gap-2">
-              {project.tools.map((tool) => (
-                <li key={tool} className="rounded-full bg-[#eef2f7] px-2.5 py-1 text-xs text-[#1b2d4f]">
-                  {tool}
-                </li>
-              ))}
-            </ul>
-          </Field>
-        </dl>
-      </details>
+    <article className="rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm md:p-8">
+      <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{project.type}</p>
+      <h3 className="mt-2 font-serif text-3xl tracking-tight text-[#1b2d4f]">{project.name}</h3>
+      <p className="mt-1 text-sm font-medium text-[#51627a]">{project.context}</p>
+      <p className="mt-5 rounded-2xl bg-[#f4f1ea] px-4 py-3 text-sm leading-6 text-[#1b2d4f]">{project.outcome}</p>
+      <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Business context</h4>
+      <p className="mt-2 text-sm leading-6 text-[#31445f]">{project.challenge}</p>
+      <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Contributions</h4>
+      <ul className="mt-2 space-y-2 text-sm leading-6 text-[#31445f]">
+        {project.approach.map((step) => (
+          <li key={step} className="flex gap-3">
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
+            <span>{step}</span>
+          </li>
+        ))}
+      </ul>
+      <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Tools</h4>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {project.tools.map((tool) => (
+          <li key={tool} className="rounded-full bg-[#eef2f7] px-3 py-1 text-xs text-[#1b2d4f]">
+            {tool}
+          </li>
+        ))}
+      </ul>
     </article>
-  );
-}
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div className="grid gap-1 border-t border-[#eef1f6] px-5 py-4 first:border-t-0 md:px-6">
-      <dt className="text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">{label}</dt>
-      <dd className="text-sm leading-6 text-[#31445f]">{children}</dd>
-    </div>
   );
 }
 
 function Experience() {
   return (
-    <section id="experience" aria-labelledby="experience-heading">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
+    <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-24">
+      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8">
         <SectionIntro id="experience-heading" title="Experience" />
-        <div className="mt-10 space-y-4">
-          {experience.map((role, index) => (
-            <details
-              key={`${role.company}-${role.dates}`}
-              open={index === 0}
-              className="group rounded-3xl border border-[#e4e9f1] bg-white shadow-sm"
-            >
-              <summary className="cursor-pointer list-none p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{role.company}</p>
-                    <h3 className="mt-2 font-serif text-2xl text-[#1b2d4f] md:text-3xl">{role.role}</h3>
-                    <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-[#51627a]">
-                      <span className="rounded-full bg-[#eef2f7] px-3 py-1 text-[#1b2d4f]">{role.dates}</span>
-                      <span>{role.span}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{role.location}</span>
-                      {role.current ? (
-                        <span className="rounded-full bg-[#e7f6ee] px-3 py-1 text-[#146c43]">Current role</span>
-                      ) : null}
-                    </div>
-                  </div>
-                  <DisclosureMark />
+        <ol className="mt-10 space-y-6">
+          {experience.map((role) => (
+            <li key={`${role.company}-${role.dates}`} className="rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm md:p-8">
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 className="font-serif text-2xl text-[#1b2d4f] md:text-3xl">{role.role}</h3>
+                  <p className="mt-1 text-base font-semibold text-[#9a7840]">{role.company}</p>
+                  <p className="mt-1 text-sm text-[#51627a]">{role.location}</p>
                 </div>
-              </summary>
-              <ul className="space-y-3 border-t border-[#eef1f6] px-6 py-5 text-sm leading-6 text-[#31445f]">
+                <div className="flex flex-wrap items-center gap-2 text-sm text-[#51627a]">
+                  <span className="rounded-full bg-[#eef2f7] px-3 py-1 text-[#1b2d4f]">{role.dates}</span>
+                  <span>{role.span}</span>
+                  {role.current ? (
+                    <span className="rounded-full bg-[#e7f6ee] px-3 py-1 text-[#146c43]">Current</span>
+                  ) : null}
+                </div>
+              </div>
+              <ul className="mt-5 space-y-3 border-t border-[#eef1f6] pt-5 text-sm leading-6 text-[#31445f]">
                 {role.achievements.map((line) => (
                   <li key={line} className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
@@ -317,9 +271,9 @@ function Experience() {
                   </li>
                 ))}
               </ul>
-            </details>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
@@ -327,7 +281,7 @@ function Experience() {
 
 function Capabilities() {
   return (
-    <section id="skills" aria-labelledby="skills-heading">
+    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
         <SectionIntro id="skills-heading" title="Technical skills" />
         <p className="mt-3 text-sm text-[#51627a]">Open a group to see the tools in it.</p>

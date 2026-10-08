@@ -128,6 +128,7 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
   body {
     @apply bg-background text-foreground;
@@ -175,71 +176,6 @@
     color: #1b2d4f;
     font-weight: 600;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html:not(.section-scroll) .section-viewport > section {
-    display: none;
-  }
-
-  html:not(.section-scroll) .section-viewport > section:target,
-  html:not(.section-scroll):not(:has(.section-viewport > section:target)) .section-viewport > #top {
-    display: block;
-  }
-}
-
-html.section-scroll {
-  scroll-behavior: auto;
-}
-
-html.section-scroll .section-viewport {
-  position: fixed;
-  top: var(--header-offset, 4rem);
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  overflow: hidden;
-  touch-action: none;
-}
-
-html.section-scroll .section-viewport > section {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 0;
-  visibility: hidden;
-  pointer-events: none;
-  opacity: 0;
-  translate: 0 2.25rem;
-}
-
-html.section-scroll .section-viewport > section[data-place="before"] {
-  translate: 0 -2.25rem;
-}
-
-html.section-scroll-ready .section-viewport > section {
-  transition:
-    opacity 0.55s ease,
-    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s linear 0.55s;
-}
-
-html.section-scroll .section-viewport > section[data-active="true"] {
-  z-index: 1;
-  visibility: visible;
-  opacity: 1;
-  translate: 0 0;
-  transition:
-    opacity 0.55s ease,
-    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s;
-}
-
-html.section-scroll .section-viewport > section[data-active="true"] :is(a, button, summary, input, textarea, select, label) {
-  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
