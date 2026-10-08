@@ -17,3 +17,7 @@ The dev server listens on [http://127.0.0.1:43123](http://127.0.0.1:43123).
 npm run lint
 npm run build
 ```
+
+## Deploy on Netlify
+
+`netlify.toml` builds the site with `npm run build` and publishes the static `out` folder. In the Netlify site settings, clear any publish directory so it does not stay set to `.next`, then trigger a new deploy.
