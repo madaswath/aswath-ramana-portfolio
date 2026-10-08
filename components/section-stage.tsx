@@ -48,7 +48,8 @@ export function SectionStage({ children }: { children: ReactNode }) {
       sections().forEach((section, sectionIndex) => {
         const active = sectionIndex === index;
         section.dataset.active = active ? "true" : "false";
-        section.style.transform = active ? `translate3d(0, ${-shift}px, 0)` : "";
+        section.dataset.place = sectionIndex < index ? "before" : sectionIndex > index ? "after" : "current";
+        if (active) section.style.transform = `translate3d(0, ${-shift}px, 0)`;
         section.toggleAttribute("inert", !active);
       });
 
@@ -121,6 +122,7 @@ export function SectionStage({ children }: { children: ReactNode }) {
     };
 
     measure();
+    requestAnimationFrame(() => html.classList.add("section-scroll-ready"));
     const initial = window.location.hash.replace("#", "");
     if (initial) scrollToId(initial, "auto");
 
@@ -146,10 +148,11 @@ export function SectionStage({ children }: { children: ReactNode }) {
       root.removeEventListener("wheel", onWheel);
       root.removeEventListener("touchstart", onTouchStart);
       root.removeEventListener("touchmove", onTouchMove);
-      html.classList.remove("section-scroll");
+      html.classList.remove("section-scroll", "section-scroll-ready");
       html.style.removeProperty("--header-offset");
       sections().forEach((section) => {
         section.dataset.active = "false";
+        delete section.dataset.place;
         section.style.transform = "";
         section.removeAttribute("inert");
       });

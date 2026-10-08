@@ -209,12 +209,33 @@ html.section-scroll .section-viewport > section {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 0;
   visibility: hidden;
   pointer-events: none;
+  opacity: 0;
+  translate: 0 2.25rem;
+}
+
+html.section-scroll .section-viewport > section[data-place="before"] {
+  translate: 0 -2.25rem;
+}
+
+html.section-scroll-ready .section-viewport > section {
+  transition:
+    opacity 0.55s ease,
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.55s;
 }
 
 html.section-scroll .section-viewport > section[data-active="true"] {
+  z-index: 1;
   visibility: visible;
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.55s ease,
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
 }
 
 html.section-scroll .section-viewport > section[data-active="true"] :is(a, button, summary, input, textarea, select, label) {
