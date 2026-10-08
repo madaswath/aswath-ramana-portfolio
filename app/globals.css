@@ -164,25 +164,56 @@
     outline: 2px solid #1b2d4f;
     outline-offset: 3px;
   }
-  #content > section {
-    display: none;
-  }
-  #content > section:target {
-    display: block;
-  }
-  #content:not(:has(> section:target)) > #top {
-    display: block;
-  }
+  html:has(#top:target) a[href="#top"],
   html:has(#work:target) a[href="#work"],
   html:has(#experience:target) a[href="#experience"],
   html:has(#skills:target) a[href="#skills"],
   html:has(#achievements:target) a[href="#achievements"],
   html:has(#credentials:target) a[href="#credentials"],
   html:has(#contact:target) a[href="#contact"],
-  html:not(:has(#content > section:target)) a[href="#top"] {
+  html:not(:has(#content section:target)) a[href="#top"] {
     color: #1b2d4f;
     font-weight: 600;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.section-scroll) .section-viewport > section:nth-child(n + 2) {
+    display: none;
+  }
+}
+
+html.section-scroll {
+  scroll-behavior: auto;
+}
+
+html.section-scroll .section-viewport {
+  position: fixed;
+  top: var(--header-offset, 4rem);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  touch-action: none;
+}
+
+html.section-scroll .section-viewport > section {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.section-scroll .section-viewport > section[data-active="true"] {
+  visibility: visible;
+}
+
+html.section-scroll .section-viewport > section[data-active="true"] :is(a, button, summary, input, textarea, select, label) {
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionStage } from "@/components/section-stage";
 import { SiteHeader } from "@/components/site-header";
 import {
   capabilities,
@@ -48,16 +49,17 @@ export function HomePage() {
         Skip to content
       </a>
       <SiteHeader />
-        <main id="content">
-        <Hero />
-        <Work />
-        <Experience />
-        <Capabilities />
-        <Achievements />
-        <Credentials />
-        <Contact />
+      <main id="content">
+        <SectionStage>
+          <Hero />
+          <Work />
+          <Experience />
+          <Capabilities />
+          <Achievements />
+          <Credentials />
+          <Contact />
+        </SectionStage>
       </main>
-      <SiteFooter />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -196,7 +198,6 @@ function Hero() {
           <ProfileFacts />
         </div>
       </details>
-      <SectionNav next={{ href: "#work", label: "Work" }} />
     </section>
   );
 }
@@ -298,7 +299,6 @@ function Work() {
             <ProjectArticle key={project.name} project={project} />
           ))}
         </div>
-        <SectionNav prev={{ href: "#top", label: "Intro" }} next={{ href: "#experience", label: "Experience" }} />
       </div>
     </section>
   );
@@ -398,7 +398,6 @@ function Experience() {
             </details>
           ))}
         </div>
-        <SectionNav prev={{ href: "#work", label: "Work" }} next={{ href: "#skills", label: "Skills" }} />
       </div>
     </section>
   );
@@ -430,7 +429,6 @@ function Capabilities() {
             </details>
           ))}
         </div>
-        <SectionNav prev={{ href: "#experience", label: "Experience" }} next={{ href: "#achievements", label: "Impact" }} />
       </div>
     </section>
   );
@@ -456,7 +454,6 @@ function Achievements() {
             );
           })}
         </ul>
-        <SectionNav prev={{ href: "#skills", label: "Skills" }} next={{ href: "#credentials", label: "Credentials" }} />
       </div>
     </section>
   );
@@ -489,7 +486,6 @@ function Credentials() {
             ))}
           </ul>
         </div>
-        <SectionNav prev={{ href: "#achievements", label: "Impact" }} next={{ href: "#contact", label: "Contact" }} />
       </div>
     </section>
   );
@@ -584,7 +580,7 @@ function Contact() {
             </div>
           </div>
         </div>
-        <SectionNav prev={{ href: "#credentials", label: "Credentials" }} />
+        <SiteFooter />
       </div>
     </section>
   );
@@ -600,34 +596,6 @@ function DisclosureMark() {
         –
       </span>
     </span>
-  );
-}
-
-function SectionNav({
-  prev,
-  next,
-}: {
-  prev?: { href: string; label: string };
-  next?: { href: string; label: string };
-}) {
-  return (
-    <nav aria-label="Sections" className="mt-8 flex flex-col gap-3 border-t border-[#e4e9f1] pt-6 sm:flex-row sm:items-center sm:justify-between">
-      {prev ? (
-        <a href={prev.href} className="text-sm font-semibold text-[#51627a] hover:text-[#1b2d4f]">
-          Previous · {prev.label}
-        </a>
-      ) : (
-        <span />
-      )}
-      {next ? (
-        <a
-          href={next.href}
-          className="inline-flex h-11 items-center justify-center rounded-full bg-[#1b2d4f] px-5 text-sm font-semibold text-white"
-        >
-          Next · {next.label}
-        </a>
-      ) : null}
-    </nav>
   );
 }
 
