@@ -14,6 +14,36 @@ const starters = [
 
 const endpoint = "/api/chat";
 
+function FormattedReply({ text }: { text: string }) {
+  const blocks = text.trim().split(/\n{2,}/);
+  return (
+    <div className="space-y-2">
+      {blocks.map((block, index) => {
+        const lines = block
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+        const bullets = lines.filter((line) => line.startsWith("- ")).map((line) => line.slice(2));
+        const prose = lines.filter((line) => !line.startsWith("- "));
+        return (
+          <div key={`${index}-${block.slice(0, 24)}`} className="space-y-1.5">
+            {prose.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+            {bullets.length ? (
+              <ul className="list-disc space-y-1 pl-4">
+                {bullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function ProfileChat() {
   const titleId = useId();
   const [open, setOpen] = useState(false);
@@ -97,16 +127,16 @@ export function ProfileChat() {
           </header>
           <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
             {messages.map((message, index) => (
-              <p
+              <div
                 key={`${message.role}-${index}`}
                 className={
                   message.role === "user"
                     ? "ml-8 rounded-2xl bg-[#1b2d4f] px-3 py-2 text-sm leading-6 text-white"
-                    : "mr-6 rounded-2xl bg-[#eef2f7] px-3 py-2 text-sm leading-6 text-[#1b2d4f]"
+                    : "mr-2 rounded-2xl bg-[#eef2f7] px-3 py-2 text-sm leading-6 text-[#1b2d4f]"
                 }
               >
-                {message.content}
-              </p>
+                {message.role === "assistant" ? <FormattedReply text={message.content} /> : message.content}
+              </div>
             ))}
             {pending ? <p className="text-sm text-[#51627a]">Looking through the profile…</p> : null}
             {error ? <p className="text-sm text-[#8a3b2d]">{error}</p> : null}

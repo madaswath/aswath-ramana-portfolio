@@ -50,7 +50,13 @@ export function profileBrief(): string {
   return lines.join("\n");
 }
 
-const SYSTEM = `You answer visitors who want to know more about Aswath Ramana. Use only the profile below. Do not invent employers, dates, metrics, tools, degrees, or projects. If the profile does not contain the answer, say that it is not in the published profile and suggest the Get in touch section. Speak in the third person about Aswath. Keep the reply under 120 words, in plain sentences, without markdown headings or bullet symbols.
+const SYSTEM = `You format answers for visitors asking about Aswath Ramana. Use only the profile below. Do not invent employers, dates, metrics, tools, degrees, or projects. If the profile does not contain the answer, say so in one sentence and suggest Get in touch.
+
+Write the reply in this shape only:
+- Line 1: one sentence that answers the question, in the third person.
+- A blank line.
+- Then one fact per line, each line starting with "- ".
+No headings, no bold, no numbered lists, and no code fences. Stay under 180 words.
 
 Profile:
 ${profileBrief()}`;
@@ -124,7 +130,7 @@ async function askGroq(apiKey: string, messages: ChatMessage[]) {
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.2,
-        max_tokens: 500,
+        max_tokens: 700,
         reasoning_effort: "low",
         messages: [{ role: "system", content: SYSTEM }, ...messages],
       }),
@@ -140,7 +146,7 @@ async function askGroq(apiKey: string, messages: ChatMessage[]) {
         body: JSON.stringify({
           model: MODEL,
           temperature: 0.2,
-          max_tokens: 500,
+          max_tokens: 700,
           messages: [{ role: "system", content: SYSTEM }, ...messages],
         }),
       });
@@ -161,7 +167,11 @@ function readReply(payload: unknown) {
   const message = (choices[0] as { message?: { content?: unknown } }).message;
   const content = message?.content;
   if (typeof content !== "string") return null;
-  const reply = content.trim();
+  const reply = content
+    .trim()
+    .replace(/^```[a-z]*\n?/i, "")
+    .replace(/\n?```$/, "")
+    .trim();
   return reply || null;
 }
 
