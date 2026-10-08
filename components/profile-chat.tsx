@@ -2,6 +2,7 @@
 
 import { FormEvent, useId, useState } from "react";
 import { MessageCircle, Send, X } from "lucide-react";
+import { answerFromProfile } from "@/lib/profile-answers";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -11,9 +12,7 @@ const starters = [
   "What are his main skills?",
 ];
 
-const endpoint =
-  process.env.NEXT_PUBLIC_CHAT_ENDPOINT ??
-  (process.env.NODE_ENV === "development" ? "http://127.0.0.1:43127/api/chat" : "/api/chat");
+const endpoint = "/api/chat";
 
 export function ProfileChat() {
   const titleId = useId();
@@ -48,12 +47,20 @@ export function ProfileChat() {
         }),
       });
       const payload = (await response.json()) as { reply?: string; error?: string };
+      if (response.status === 429) {
+        throw new Error(payload.error || "Too many questions. Please try again in a minute.");
+      }
       if (!response.ok || !payload.reply) {
-        throw new Error(payload.error || "The assistant could not answer just now.");
+        throw new Error("fallback");
       }
       setMessages((current) => [...current, { role: "assistant", content: payload.reply! }]);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "The assistant could not answer just now.");
+      const message = caught instanceof Error ? caught.message : "";
+      if (message.startsWith("Too many")) {
+        setError(message);
+      } else {
+        setMessages((current) => [...current, { role: "assistant", content: answerFromProfile(question) }]);
+      }
     } finally {
       setPending(false);
     }

@@ -13,7 +13,7 @@ npm run dev
 
 The dev server listens on [http://127.0.0.1:43123](http://127.0.0.1:43123). The same command starts the profile chat API on port 43127.
 
-A chat button in the lower-right answers questions about the profile, projects, and skills. With `GROQ_API_KEY` set, those answers come from Groq (`openai/gpt-oss-20b` unless `GROQ_MODEL` is set). Without a key, the same button answers from the published profile text. Copy `.env.example` to `.env.local` for local Groq calls. `.env.local` is not committed.
+A chat button in the lower-right answers questions about the profile, projects, and skills. It answers from the published profile without any API key. Set `GROQ_API_KEY` when you want those answers written by Groq (`openai/gpt-oss-20b` unless `GROQ_MODEL` is set). Copy `.env.example` to `.env.local` for local Groq calls. `.env.local` is not committed.
 
 ```bash
 npm run lint
