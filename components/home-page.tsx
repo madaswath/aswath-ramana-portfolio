@@ -85,11 +85,6 @@ export function HomePage() {
 }
 
 function Hero() {
-  const email = mailtoHref(person.email);
-  const phone = telHref(person.phone);
-  const linkedin = httpsHref(person.linkedin);
-  const github = httpsHref(person.github);
-
   return (
     <section id="top" className="mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
@@ -119,53 +114,6 @@ function Hero() {
             />
           </div>
           <p className="mt-5 max-w-xl text-base leading-7 text-[#31445f]">{person.summary}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Button
-              nativeButton={false}
-              render={<a href="#work" />}
-              className="h-12 rounded-full px-5 text-sm font-semibold"
-            >
-              View selected work
-            </Button>
-            <Button
-              nativeButton={false}
-              render={<a href="#contact" />}
-              variant="outline"
-              className="h-12 rounded-full border-[#d5dce6] bg-white px-5 text-sm font-semibold text-[#1b2d4f]"
-            >
-              Get in touch
-            </Button>
-            {github ? (
-              <Button
-                nativeButton={false}
-                render={
-                  <a href={github} target="_blank" rel="noopener noreferrer" />
-                }
-                variant="outline"
-                className="h-12 rounded-full border-[#d5dce6] bg-white px-5 text-sm font-semibold text-[#1b2d4f]"
-              >
-                GitHub
-                <span className="sr-only"> (opens in a new tab)</span>
-              </Button>
-            ) : null}
-          </div>
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {email ? (
-              <li>
-                <Chip href={email} icon={Mail} label={person.email} />
-              </li>
-            ) : null}
-            {phone ? (
-              <li>
-                <Chip href={phone} icon={Phone} label={person.phone} />
-              </li>
-            ) : null}
-            {linkedin ? (
-              <li>
-                <Chip href={linkedin} icon={Link2} label="LinkedIn" external />
-              </li>
-            ) : null}
-          </ul>
         </div>
         <div className="relative mx-auto hidden w-full max-w-sm lg:block lg:h-[500px] lg:max-w-md">
           <div className="pointer-events-none absolute inset-6 hidden rounded-full border border-[#d7deea] lg:block" aria-hidden="true" />
@@ -240,30 +188,6 @@ function FloatCard({ className, figure, label }: { className: string; figure: st
       <p className="text-lg font-bold tracking-tight text-[#1b2d4f]">{figure}</p>
       <p className="text-xs text-[#51627a]">{label}</p>
     </div>
-  );
-}
-
-function Chip({
-  href,
-  icon: Icon,
-  label,
-  external = false,
-}: {
-  href: string;
-  icon: LucideIcon;
-  label: string;
-  external?: boolean;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-2 text-sm text-[#31445f] hover:border-[#1b2d4f]"
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
-      <Icon className="size-4" aria-hidden="true" />
-      {label}
-      {external ? <span className="sr-only"> (opens in a new tab)</span> : null}
-    </a>
   );
 }
 
@@ -557,24 +481,21 @@ function Contact() {
               </ul>
             </div>
             <div className="flex flex-col gap-3">
+              <Button
+                nativeButton={false}
+                render={<a href="#work" />}
+                className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
+              >
+                View selected work
+              </Button>
               {email ? (
                 <Button
                   nativeButton={false}
                   render={<a href={email} />}
-                  className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
-                >
-                  Email me
-                </Button>
-              ) : null}
-              {linkedin ? (
-                <Button
-                  nativeButton={false}
-                  render={<a href={linkedin} target="_blank" rel="noopener noreferrer" />}
                   variant="outline"
                   className="h-12 rounded-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10"
                 >
-                  View LinkedIn
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  Email me
                 </Button>
               ) : null}
             </div>
