@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProfileChat } from "@/components/profile-chat";
 import { SiteHeader } from "@/components/site-header";
 import {
   capabilities,
@@ -43,6 +44,7 @@ export function HomePage() {
         Skip to content
       </a>
       <SiteHeader />
+      <ProfileChat />
       <main id="content">
         <Hero />
         <Work />
