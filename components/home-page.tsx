@@ -78,33 +78,30 @@ export function HomePage() {
 function Hero() {
   return (
     <section id="top" className="scroll-mt-24 mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_16rem]">
+      <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
+        <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
+        {person.role}
+        <span className="text-[#c5ceda]" aria-hidden="true">
+          ·
+        </span>
+        <span className="tracking-normal text-[#51627a] normal-case">{person.location}</span>
+      </p>
+      <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
-            <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
-            {person.role}
-            <span className="text-[#c5ceda]" aria-hidden="true">
-              ·
-            </span>
-            <span className="tracking-normal text-[#51627a] normal-case">{person.location}</span>
-          </p>
-          <h1 className="mt-5 font-serif text-[clamp(3.4rem,8vw,6.4rem)] leading-[0.9] tracking-tight text-[#1b2d4f]">
-            Aswath
-            <span className="block text-[#9a7840]">Ramana</span>
+          <h1 className="whitespace-nowrap font-serif text-[clamp(1.85rem,4.6vw,4.25rem)] leading-none tracking-tight text-[#1b2d4f]">
+            Aswath <span className="text-[#9a7840]">Ramana</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[#31445f]">{person.summary}</p>
         </div>
-        <div className="mx-auto w-44 sm:w-52 lg:mx-0 lg:-mt-2 lg:w-56">
-          <div className="relative aspect-square w-full overflow-hidden rounded-[1.6rem] border-4 border-white shadow-xl">
-            <Image
-              src="/aswath-ramana.jpg"
-              alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
-              fill
-              priority
-              sizes="224px"
-              className="object-cover object-[center_10%]"
-            />
-          </div>
+        <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:mx-0 lg:aspect-auto lg:h-full lg:max-w-none">
+          <Image
+            src="/aswath-ramana.jpg"
+            alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
+            fill
+            priority
+            sizes="(min-width: 1024px) 384px, 80vw"
+            className="object-cover object-[center_10%]"
+          />
         </div>
       </div>
     </section>
