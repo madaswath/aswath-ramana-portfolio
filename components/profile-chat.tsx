@@ -17,7 +17,7 @@ const endpoint = "/api/chat";
 function FormattedReply({ text }: { text: string }) {
   const blocks = text.trim().split(/\n{2,}/);
   return (
-    <div className="space-y-2">
+    <div className="space-y-2.5">
       {blocks.map((block, index) => {
         const lines = block
           .split("\n")
@@ -27,13 +27,23 @@ function FormattedReply({ text }: { text: string }) {
         const prose = lines.filter((line) => !line.startsWith("- "));
         return (
           <div key={`${index}-${block.slice(0, 24)}`} className="space-y-1.5">
-            {prose.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
+            {prose.map((line) =>
+              /^\*\*[^*]+\*\*$/.test(line) ? (
+                <p key={line} className="pt-1 text-xs font-semibold tracking-[0.12em] text-[#9a7840] uppercase">
+                  {line.slice(2, -2)}
+                </p>
+              ) : (
+                <p key={line}>
+                  <RichText text={line} />
+                </p>
+              ),
+            )}
             {bullets.length ? (
-              <ul className="list-disc space-y-1 pl-4">
+              <ul className="list-disc space-y-1.5 pl-4">
                 {bullets.map((line) => (
-                  <li key={line}>{line}</li>
+                  <li key={line}>
+                    <RichText text={line} />
+                  </li>
                 ))}
               </ul>
             ) : null}
@@ -41,6 +51,19 @@ function FormattedReply({ text }: { text: string }) {
         );
       })}
     </div>
+  );
+}
+
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={index} className="font-semibold text-[#1b2d4f]">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      <span key={index}>{part}</span>
+    ),
   );
 }
 
