@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Download, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { nav, person } from "@/lib/content";
 
@@ -10,9 +10,9 @@ export function SiteHeader() {
           <span className="sr-only">Home, </span>
           {person.name}
         </a>
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <nav aria-label="Primary">
-            <ul className="flex items-center gap-5">
+            <ul className="flex items-center gap-3">
               {nav.map((item) => (
                 <li key={item.href}>
                   <a href={item.href} className="text-sm text-[#51627a] hover:text-[#1b2d4f]">
@@ -24,8 +24,17 @@ export function SiteHeader() {
           </nav>
           <Button
             nativeButton={false}
+            render={<a href={person.resume.href} download={person.resume.filename} />}
+            variant="outline"
+            className="h-10 rounded-full px-3 text-sm font-semibold"
+          >
+            <Download className="size-4" aria-hidden="true" />
+            Download resume
+          </Button>
+          <Button
+            nativeButton={false}
             render={<a href="#contact" />}
-            className="h-10 rounded-full px-4 text-sm font-semibold"
+            className="h-10 rounded-full px-3 text-sm font-semibold"
           >
             Get in touch
           </Button>
@@ -47,6 +56,17 @@ export function SiteHeader() {
                   </a>
                 </li>
               ))}
+              <li className="px-1 pt-2">
+                <Button
+                  nativeButton={false}
+                  render={<a href={person.resume.href} download={person.resume.filename} />}
+                  variant="outline"
+                  className="h-11 w-full rounded-full"
+                >
+                  <Download className="size-4" aria-hidden="true" />
+                  Download resume
+                </Button>
+              </li>
               <li className="px-1 pt-2">
                 <Button
                   nativeButton={false}

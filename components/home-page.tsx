@@ -78,7 +78,7 @@ export function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="page-wrap scroll-mt-24 flex min-h-[calc(100svh-4.25rem)] flex-col justify-center py-10 md:py-12">
+    <section id="top" className="page-wrap scroll-mt-24 pt-12 pb-8 md:pt-16">
       <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
         <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
         {person.role}
@@ -87,12 +87,12 @@ function Hero() {
         </span>
         <span className="tracking-normal text-[#51627a] normal-case">{person.location}</span>
       </p>
-      <div className="mt-6 grid w-full items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:items-stretch">
-        <div className="flex min-w-0 flex-col justify-center">
+      <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
+        <div>
           <h1 className="whitespace-nowrap font-serif text-[clamp(1.85rem,4.6vw,4.25rem)] leading-none tracking-tight text-[#1b2d4f]">
             Aswath <span className="text-[#9a7840]">Ramana</span>
           </h1>
-          <p className="mt-5 max-w-4xl text-base leading-7 text-[#31445f] xl:text-lg xl:leading-8">{person.summary}</p>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[#31445f]">{person.summary}</p>
         </div>
         <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:mx-0 lg:aspect-auto lg:h-full lg:max-w-none">
           <Image
@@ -286,26 +286,16 @@ function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="bg-[#1b2d4f] text-white">
-        <div className="page-wrap grid gap-8 py-16 md:py-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+      <div className="page-wrap py-16 md:py-20">
+        <div className="grid gap-8 rounded-[2rem] bg-[#1b2d4f] px-6 py-10 text-white md:px-12 md:py-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div>
             <h2 id="contact-heading" className="font-serif text-4xl md:text-5xl">
               Get in touch
             </h2>
-            <p className="mt-4 max-w-3xl text-[#d5deea]">
-              For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, download the resume, or open the profiles below.
+            <p className="mt-4 max-w-xl text-[#d5deea]">
+              For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, or open the profiles below.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2">
-              <li>
-                <a
-                  href={person.resume.href}
-                  download={person.resume.filename}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-sm font-semibold text-[#1b2d4f]"
-                >
-                  <Download className="size-4" aria-hidden="true" />
-                  Download resume (PDF)
-                </a>
-              </li>
               {email ? (
                 <li>
                   <a href={email} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
@@ -381,8 +371,8 @@ function Contact() {
             ) : null}
           </div>
         </div>
+        <SiteFooter />
       </div>
-      <SiteFooter />
     </section>
   );
 }
@@ -390,7 +380,7 @@ function Contact() {
 function SiteFooter() {
   return (
     <footer className="border-t border-[#e4e9f1]">
-      <p className="page-wrap py-8 text-center text-sm text-[#51627a]">
+      <p className="py-8 text-center text-sm text-[#51627a]">
         {person.name} · {person.role} · {person.location}
       </p>
     </footer>
