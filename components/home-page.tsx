@@ -169,7 +169,6 @@ function Experience() {
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-sm text-[#51627a]">
                   <span className="rounded-full bg-[#eef2f7] px-3 py-1 text-[#1b2d4f]">{role.dates}</span>
-                  <span>{role.span}</span>
                   {role.current ? (
                     <span className="rounded-full bg-[#e7f6ee] px-3 py-1 text-[#146c43]">Current</span>
                   ) : null}

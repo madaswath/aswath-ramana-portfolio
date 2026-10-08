@@ -211,7 +211,6 @@ export const experience = [
     company: "EY GDS",
     role: "Senior GenAI Consultant",
     dates: "November 2025–Present",
-    span: "11 mos",
     location: "Chennai, India",
     current: true,
     achievements: [
@@ -224,7 +223,6 @@ export const experience = [
     company: "Qentelli Solutions",
     role: "Senior Software Engineer",
     dates: "June 2024–October 2025",
-    span: "1 yr 4 mos",
     location: "Hyderabad, India",
     current: false,
     achievements: [
@@ -237,7 +235,6 @@ export const experience = [
     company: "Ernst & Young LLP — EY India",
     role: "Senior Consultant",
     dates: "May 2021–May 2024",
-    span: "3 yrs",
     location: "Bangalore, India",
     current: false,
     achievements: [
@@ -251,7 +248,6 @@ export const experience = [
     company: "City Union Bank Ltd",
     role: "Associate",
     dates: "January 2018–August 2019",
-    span: "1 yr 7 mos",
     location: "Chennai, India",
     current: false,
     achievements: [
