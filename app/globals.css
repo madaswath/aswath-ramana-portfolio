@@ -178,8 +178,13 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html:not(.section-scroll) .section-viewport > section:nth-child(n + 2) {
+  html:not(.section-scroll) .section-viewport > section {
     display: none;
+  }
+
+  html:not(.section-scroll) .section-viewport > section:target,
+  html:not(.section-scroll):not(:has(.section-viewport > section:target)) .section-viewport > #top {
+    display: block;
   }
 }
 
