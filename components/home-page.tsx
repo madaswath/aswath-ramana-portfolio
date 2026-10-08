@@ -35,8 +35,8 @@ const achievementIcons: Record<string, LucideIcon> = {
   "Daily review time": Clock3,
   "Production users": Users,
   "Developers led": Users,
-  "Client teams led": Users,
-  "Client handover": Bot,
+  "Call personas": Bot,
+  "BI answers": Bot,
 };
 
 export function HomePage() {

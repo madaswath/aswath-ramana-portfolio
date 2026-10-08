@@ -55,14 +55,14 @@ export const metrics = [
     detail: "RAG microservices and LangGraph orchestration, mentoring 2–3 junior engineers.",
   },
   {
-    figure: "3–5",
-    label: "Client teams led",
-    detail: "Translated client requirements into architectures and coordinated data access with department heads.",
+    figure: "~50",
+    label: "Call personas",
+    detail: "Dynamic personas and difficulty levels for insurance employee evaluations.",
   },
   {
-    figure: "2 phases",
-    label: "Client handover",
-    detail: "Live BI assistant delivered through client handover, with AWS releases on GitLab and CloudBees.",
+    figure: "5–20 sec",
+    label: "BI answers",
+    detail: "Live assistant over insurance documents, SharePoint, and schema-checked SQL.",
   },
 ] as const;
 
