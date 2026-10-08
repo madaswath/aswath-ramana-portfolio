@@ -1,4 +1,5 @@
 import { createServer } from "node:http";
+import "./load-env.ts";
 import { answerQuestion } from "./profile-chat.ts";
 
 const port = 43127;
