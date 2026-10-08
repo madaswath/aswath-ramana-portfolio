@@ -78,7 +78,7 @@ export function HomePage() {
 function Hero() {
   return (
     <section id="top" className="scroll-mt-24 mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
-      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_16rem]">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
             <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
@@ -94,15 +94,15 @@ function Hero() {
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-[#31445f]">{person.summary}</p>
         </div>
-        <div className="mx-auto w-full max-w-sm lg:max-w-md">
-          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-xl">
+        <div className="mx-auto w-44 sm:w-52 lg:mx-0 lg:-mt-2 lg:w-56">
+          <div className="relative aspect-square w-full overflow-hidden rounded-[1.6rem] border-4 border-white shadow-xl">
             <Image
               src="/aswath-ramana.jpg"
               alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
               fill
               priority
-              sizes="(min-width: 1024px) 420px, 80vw"
-              className="object-cover object-[center_18%]"
+              sizes="224px"
+              className="object-cover object-[center_10%]"
             />
           </div>
         </div>
