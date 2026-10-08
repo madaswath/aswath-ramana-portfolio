@@ -7,30 +7,7 @@ export const person = {
   linkedin: "https://linkedin.com/in/aswath-ramana",
   github: "https://github.com/madaswath",
   summary:
-    "Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and enterprise automation solutions across banking, insurance, and other enterprise environments. Hands-on experience designing agentic AI systems, RAG applications, text-to-SQL workflows, intelligent document-processing pipelines, and ML/NLP solutions using Python, LangGraph, LangChain, Azure AI, and AWS. Leads technical delivery from requirements and architecture through implementation, testing, deployment, and client handover.",
-} as const;
-
-export const profile = {
-  currentRole: "Senior GenAI Consultant",
-  currentCompany: "EY GDS",
-  focus: [
-    "Agentic AI systems and RAG applications",
-    "Text-to-SQL and intelligent document processing",
-    "ML and NLP for banking compliance",
-    "Delivery on AWS and Azure",
-  ],
-  industries: ["Banking", "Insurance", "Financial services"],
-  platforms: [
-    "AWS",
-    "Amazon S3",
-    "Azure OpenAI",
-    "Azure AI Foundry",
-    "Azure AI Search",
-    "Azure Speech Services",
-    "Azure Bot Service",
-    "Azure Functions",
-    "Azure Logic Apps",
-  ],
+    "Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and enterprise automation for banking, insurance, and financial services. The work focuses on agentic AI systems and RAG applications, text-to-SQL and intelligent document processing, and ML and NLP for banking compliance. Delivery is on AWS and Azure, including Amazon S3, Azure OpenAI, Azure AI Foundry, Azure AI Search, Azure Speech Services, Azure Bot Service, Azure Functions, and Azure Logic Apps, using Python, LangGraph, and LangChain. Technical delivery runs from requirements and architecture through implementation, testing, deployment, and client handover.",
 } as const;
 
 export const metrics = [

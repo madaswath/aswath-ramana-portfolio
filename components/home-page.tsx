@@ -18,7 +18,6 @@ import {
   experience,
   metrics,
   person,
-  profile,
   projects,
   type Project,
 } from "@/lib/content";
@@ -93,106 +92,22 @@ function Hero() {
             Aswath
             <span className="block text-[#9a7840]">Ramana</span>
           </h1>
-          <p className="mt-4 text-lg text-[#51627a]">
-            AI, ML, and enterprise automation for banking and insurance.
-          </p>
-          <div className="relative mx-auto mt-6 aspect-square w-56 overflow-hidden rounded-[1.6rem] border-4 border-white shadow-lg lg:hidden">
-            <Image
-              src="/aswath-ramana.jpg"
-              alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
-              fill
-              sizes="224px"
-              className="object-cover object-[center_18%]"
-            />
-          </div>
-          <p className="mt-5 max-w-xl text-base leading-7 text-[#31445f]">{person.summary}</p>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[#31445f]">{person.summary}</p>
         </div>
-        <div className="relative mx-auto hidden w-full max-w-sm lg:block lg:h-[500px] lg:max-w-md">
-          <div className="pointer-events-none absolute inset-6 hidden rounded-full border border-[#d7deea] lg:block" aria-hidden="true" />
-          <div className="pointer-events-none absolute inset-14 hidden rounded-full border border-dashed border-[#c9d3e2] lg:block" aria-hidden="true" />
-          <div className="relative mx-auto aspect-square w-[86%] overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:absolute lg:top-1/2 lg:left-1/2 lg:w-[68%] lg:-translate-x-1/2 lg:-translate-y-1/2">
+        <div className="mx-auto w-full max-w-sm lg:max-w-md">
+          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-xl">
             <Image
               src="/aswath-ramana.jpg"
               alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
               fill
               priority
-              sizes="(min-width: 1024px) 320px, 80vw"
+              sizes="(min-width: 1024px) 420px, 80vw"
               className="object-cover object-[center_18%]"
             />
           </div>
-          <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-            <FloatCard className="top-4 right-0" figure="55% → 10%" label="False positives" />
-            <FloatCard className="bottom-20 left-0" figure="1,000+" label="Production users" />
-            <FloatCard className="right-0 bottom-6" figure="~3 days → ~3 hrs" label="Daily review" />
-          </div>
         </div>
       </div>
-      <div className="mt-8">
-        <ProofBand />
-      </div>
-      <details className="mt-6 rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm">
-        <summary className="cursor-pointer list-none font-semibold text-[#1b2d4f]">
-          Focus, industries, and platforms
-        </summary>
-        <div className="pt-6">
-          <ProfileFacts />
-        </div>
-      </details>
     </section>
-  );
-}
-
-function ProfileFacts() {
-  return (
-    <div className="grid gap-6 md:grid-cols-4">
-      <div>
-        <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">Now</p>
-        <p className="mt-2 font-semibold text-[#1b2d4f]">{profile.currentRole}</p>
-        <p className="text-sm text-[#51627a]">
-          {profile.currentCompany} · {person.location}
-        </p>
-      </div>
-      <FactList title="Focus" items={profile.focus} />
-      <FactList title="Industries" items={profile.industries} />
-      <FactList title="Platforms" items={profile.platforms} />
-    </div>
-  );
-}
-
-function FactList({ title, items }: { title: string; items: readonly string[] }) {
-  return (
-    <div>
-      <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{title}</p>
-      <ul className="mt-2 flex flex-wrap gap-1.5 text-sm leading-5 text-[#31445f]">
-        {items.map((item) => (
-          <li key={item} className="rounded-full bg-[#eef2f7] px-2.5 py-1">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function FloatCard({ className, figure, label }: { className: string; figure: string; label: string }) {
-  return (
-    <div className={`absolute rounded-2xl border border-[#e4e9f1] bg-white px-4 py-3 shadow-lg ${className}`}>
-      <p className="text-lg font-bold tracking-tight text-[#1b2d4f]">{figure}</p>
-      <p className="text-xs text-[#51627a]">{label}</p>
-    </div>
-  );
-}
-
-function ProofBand() {
-  return (
-    <div aria-label="Headline outcomes" className="grid gap-6 rounded-3xl bg-[#1b2d4f] px-6 py-8 text-white sm:grid-cols-3 md:px-10">
-        {metrics.slice(0, 3).map((metric) => (
-          <div key={metric.label}>
-            <p className="font-serif text-3xl text-[#e7d3a1] md:text-4xl">{metric.figure}</p>
-            <p className="mt-2 text-sm text-[#d5deea]">{metric.label}</p>
-          </div>
-        ))}
-    </div>
   );
 }
 
