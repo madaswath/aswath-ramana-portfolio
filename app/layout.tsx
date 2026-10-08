@@ -15,16 +15,16 @@ const playfair = Playfair_Display({
 });
 
 const description =
-  "Senior GenAI Engineer and Technical Lead with 7+ years of experience delivering scalable enterprise AI/ML solutions across banking, insurance, and financial services.";
+  "Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and enterprise automation across banking, insurance, and other enterprise environments.";
 
 export const metadata: Metadata = {
-  title: "Aswath Ramana — Senior GenAI Engineer",
+  title: "Aswath Ramana — Senior Generative AI Engineer",
   description,
   authors: [{ name: "Aswath Ramana" }],
   creator: "Aswath Ramana",
   keywords: [
     "Aswath Ramana",
-    "Senior GenAI Engineer",
+    "Senior Generative AI Engineer",
     "Chennai",
     "RAG",
     "LangGraph",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Aswath Ramana — Senior GenAI Engineer",
+    title: "Aswath Ramana — Senior Generative AI Engineer",
     description,
     type: "profile",
     locale: "en_IN",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Aswath Ramana — Senior GenAI Engineer",
+    title: "Aswath Ramana — Senior Generative AI Engineer",
     description,
   },
 };

@@ -33,10 +33,10 @@ const further = projects.filter((project) => project.placement === "further");
 const achievementIcons: Record<string, LucideIcon> = {
   "False-positive rate": ShieldCheck,
   "Daily review time": Clock3,
-  "Production users": Users,
+  "Employees evaluated": Users,
   "Developers led": Users,
-  "Call personas": Bot,
-  "BI answers": Bot,
+  "BI response time": Clock3,
+  "Fastener products": Bot,
 };
 
 export function HomePage() {
@@ -102,12 +102,12 @@ function Hero() {
             <span className="block text-[#9a7840]">Ramana</span>
           </h1>
           <p className="mt-4 text-lg text-[#51627a]">
-            Technical lead for production GenAI. RAG, agents, and client delivery on AWS and Azure.
+            AI, ML, and enterprise automation for banking and insurance.
           </p>
           <div className="relative mx-auto mt-6 aspect-square w-56 overflow-hidden rounded-[1.6rem] border-4 border-white shadow-lg lg:hidden">
             <Image
               src="/aswath-ramana.jpg"
-              alt="Aswath Ramana, Senior GenAI Engineer, in a navy suit"
+              alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
               fill
               sizes="224px"
               className="object-cover object-[center_18%]"
@@ -121,7 +121,7 @@ function Hero() {
           <div className="relative mx-auto aspect-square w-[86%] overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:absolute lg:top-1/2 lg:left-1/2 lg:w-[68%] lg:-translate-x-1/2 lg:-translate-y-1/2">
             <Image
               src="/aswath-ramana.jpg"
-              alt="Aswath Ramana, Senior GenAI Engineer, in a navy suit"
+              alt="Aswath Ramana, Senior Generative AI Engineer, in a navy suit"
               fill
               priority
               sizes="(min-width: 1024px) 320px, 80vw"
@@ -210,9 +210,9 @@ function Work() {
   return (
     <section id="work" aria-labelledby="work-heading">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
-        <SectionIntro id="work-heading" kicker="Selected work" title="Systems" accent="shipped." />
+        <SectionIntro id="work-heading" title="Selected projects" />
         <p className="mt-3 max-w-xl text-sm text-[#51627a]">
-          The featured system is open. Open any other row for the challenge, approach, and stack.
+          Open a project for the business context, contributions, and tools.
         </p>
         <div className="mt-6 space-y-3">
           <ProjectArticle project={featured} featured />
@@ -229,7 +229,7 @@ function Work() {
 }
 
 function ProjectArticle({ project, featured = false }: { project: Project; featured?: boolean }) {
-  const kind = featured ? "Featured" : project.placement === "supporting" ? "Selected" : "Further";
+  const kind = project.type;
 
   return (
     <article className="overflow-hidden rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
@@ -237,9 +237,7 @@ function ProjectArticle({ project, featured = false }: { project: Project; featu
         <summary className="cursor-pointer list-none p-5 md:p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">
-                {kind} · {project.type}
-              </p>
+              <p className="text-xs font-semibold tracking-[0.16em] text-[#9a7840] uppercase">{kind}</p>
               <h3 className="mt-2 font-serif text-2xl tracking-tight text-[#1b2d4f]">{project.name}</h3>
               <p className="mt-1 text-sm text-[#51627a]">{project.context}</p>
               <p className="mt-2 text-sm leading-6 text-[#31445f] group-open:hidden">{project.outcome}</p>
@@ -248,8 +246,8 @@ function ProjectArticle({ project, featured = false }: { project: Project; featu
           </div>
         </summary>
         <dl className="border-t border-[#eef1f6]">
-          <Field label="Challenge">{project.challenge}</Field>
-          <Field label="Approach">
+          <Field label="Business context">{project.challenge}</Field>
+          <Field label="Contributions">
             <ul className="list-disc space-y-2 pl-4">
               {project.approach.map((step) => (
                 <li key={step}>{step}</li>
@@ -257,7 +255,7 @@ function ProjectArticle({ project, featured = false }: { project: Project; featu
             </ul>
           </Field>
           <Field label="Outcome">{project.outcome}</Field>
-          <Field label="Stack">
+          <Field label="Tools">
             <ul className="flex flex-wrap gap-2">
               {project.tools.map((tool) => (
                 <li key={tool} className="rounded-full bg-[#eef2f7] px-2.5 py-1 text-xs text-[#1b2d4f]">
@@ -285,7 +283,7 @@ function Experience() {
   return (
     <section id="experience" aria-labelledby="experience-heading">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
-        <SectionIntro id="experience-heading" kicker="Career journey" title="Professional" accent="experience" />
+        <SectionIntro id="experience-heading" title="Experience" />
         <div className="mt-10 space-y-4">
           {experience.map((role, index) => (
             <details
@@ -331,7 +329,7 @@ function Capabilities() {
   return (
     <section id="skills" aria-labelledby="skills-heading">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
-        <SectionIntro id="skills-heading" kicker="Expertise" title="Core" accent="capabilities" />
+        <SectionIntro id="skills-heading" title="Technical skills" />
         <p className="mt-3 text-sm text-[#51627a]">Open a group to see the tools in it.</p>
         <div className="mt-6 space-y-3">
           {capabilities.map((group) => (
@@ -362,7 +360,7 @@ function Achievements() {
   return (
     <section id="achievements" aria-labelledby="impact-heading" className="scroll-mt-24 md:scroll-mt-20">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
-        <SectionIntro id="impact-heading" kicker="Impact metrics" title="Key" accent="outcomes" />
+        <SectionIntro id="impact-heading" title="Career highlights" />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {metrics.map((metric) => {
             const Icon = achievementIcons[metric.label] ?? Bot;
@@ -387,7 +385,7 @@ function Credentials() {
   return (
     <section id="credentials" aria-labelledby="credentials-heading" className="scroll-mt-24 md:scroll-mt-20">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
-        <SectionIntro id="credentials-heading" kicker="Credentials" title="Certifications" />
+        <SectionIntro id="credentials-heading" title="Certifications" />
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {certifications.map((item) => (
             <li key={item} className="rounded-3xl border border-[#e4e9f1] bg-white p-5 shadow-sm">
@@ -399,7 +397,7 @@ function Credentials() {
           ))}
         </ul>
         <div className="mt-16">
-          <SectionIntro id="education-heading" kicker="Academic background" title="Education" />
+          <SectionIntro id="education-heading" title="Education" />
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {education.map((item) => (
               <li key={item.school} className="rounded-3xl border border-[#e4e9f1] bg-white p-6 shadow-sm">
@@ -428,7 +426,7 @@ function Contact() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
             <div>
               <h2 id="contact-heading" className="font-serif text-4xl md:text-5xl">
-                Let&apos;s <span className="text-[#e7d3a1]">talk.</span>
+                Get in touch
               </h2>
               <p className="mt-4 max-w-xl text-[#d5deea]">
                 For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, or open the profiles below.
@@ -486,7 +484,7 @@ function Contact() {
                 render={<a href="#work" />}
                 className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
               >
-                View selected work
+                View projects
               </Button>
               {email ? (
                 <Button
@@ -530,27 +528,10 @@ function SiteFooter() {
   );
 }
 
-function SectionIntro({
-  id,
-  kicker,
-  title,
-  accent,
-}: {
-  id: string;
-  kicker: string;
-  title: string;
-  accent?: string;
-}) {
+function SectionIntro({ id, title }: { id: string; title: string }) {
   return (
-    <div>
-      <p className="flex items-center gap-3 text-xs font-semibold tracking-[0.18em] text-[#9a7840] uppercase">
-        <span className="h-px w-8 bg-[#9a7840]" aria-hidden="true" />
-        {kicker}
-      </p>
-      <h2 id={id} className="mt-3 font-serif text-4xl tracking-tight text-[#1b2d4f] md:text-5xl">
-        {title}
-        {accent ? <span className="text-[#9a7840]"> {accent}</span> : null}
-      </h2>
-    </div>
+    <h2 id={id} className="font-serif text-4xl tracking-tight text-[#1b2d4f] md:text-5xl">
+      {title}
+    </h2>
   );
 }

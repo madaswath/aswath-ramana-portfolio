@@ -1,185 +1,176 @@
 # ASWATH RAMANA
 
-**Senior GenAI Engineer**
+## Senior Generative AI Engineer
 
-Chennai, India | +91 8344022298 | [aswath.ramana6@gmail.com](mailto:aswath.ramana6@gmail.com)
-
+Chennai, India | +91 8344022298 | aswath.ramana6@gmail.com  
 [LinkedIn](https://linkedin.com/in/aswath-ramana) | [GitHub](https://github.com/madaswath)
 
 ---
 
-### PROFESSIONAL SUMMARY
+## Professional summary
 
-Senior GenAI Engineer and Technical Lead with 7+ years of experience delivering scalable enterprise AI/ML solutions across banking, insurance, and financial services. Specialized in architecting production-grade RAG pipelines, multi-agent orchestration (LangGraph, LangChain), text-to-SQL systems, and intelligent document processing. Proven track record leading cross-functional engineering teams through full lifecycle delivery on AWS and Azure—notably driving sanctions-screening automation that reduced false positives from 55% to 10% and deploying enterprise voice simulators serving 1,000+ users.
+Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and enterprise automation solutions across banking, insurance, and other enterprise environments. Hands-on experience designing agentic AI systems, RAG applications, text-to-SQL workflows, intelligent document-processing pipelines, and ML/NLP solutions using Python, LangGraph, LangChain, Azure AI, and AWS. Leads technical delivery from requirements and architecture through implementation, testing, deployment, and client handover. Delivered measurable banking-compliance impact by reducing sanctions-screening false positives from 55% to 10% and reducing daily review time from approximately 3 days to 3 hours.
 
----
+## Career highlights
 
-### TECHNICAL SKILLS
+- Reduced AML sanctions-screening false positives from **55% to 10%** across millions of banking transactions.
+- Reduced daily flagged-transaction processing from approximately **3 days to 3 hours**, with **2% of screening cases** routed for manual review.
+- Delivered a BI assistant over **thousands of insurance documents, SharePoint files, charts, and database records**, with response times of **5–20 seconds** based on query complexity.
+- Built an insurance voice-simulation platform used by **1,000+ employees** for product knowledge, customer-handling, and empathy evaluations.
+- Led delivery teams of **5–6 developers** and mentored **2–3 junior engineers** on RAG, microservices, and agent orchestration.
+- Built an inventory catalogue covering **4,000+ fastener products** to support quotation pricing, stock validation, procurement, and delivery workflows.
 
-- LLMs & providers: Azure OpenAI, OpenAI GPT, Google Gemini, Groq API
-- Agents & orchestration: LangGraph, LangChain, multi-agent orchestration, workflow state, tool integration, structured outputs, schema validation, human-in-the-loop escalation, prompt engineering
-- Retrieval & documents: RAG, Azure AI Search, FAISS, embeddings, vector search, text-to-SQL, Tesseract OCR, intelligent document processing
-- Quality & responsible AI: guardrails, hallucination controls, LLM evaluation, benchmarking, regression testing, exception handling
-- ML & NLP: Scikit-learn, spaCy, NLTK, entity resolution, token classification, anomaly detection, fuzzy and phonetic matching
-- Backend & data: Python, FastAPI, Flask, REST APIs, SQL, PostgreSQL, SQL Server, Supabase
-- Cloud & enterprise: AWS, Amazon S3, Azure AI Foundry, Azure Speech Services, Azure Bot Service, Azure Functions, Azure Logic Apps, SharePoint, Microsoft Dynamics 365, Power Automate
-- DevOps & scheduling: Git, GitLab, CloudBees CI/CD, Azure DevOps, Docker, APScheduler
-- Reporting: Power BI, Tableau
+## Technical skills
 
----
+**Generative AI and LLM platforms:** Azure OpenAI, Azure AI Foundry, Azure AI Search, OpenAI GPT, Google Gemini, Groq API  
+**Agentic AI and retrieval:** LangGraph, LangChain, multi-agent orchestration, workflow state management, tool integration, RAG, embeddings, vector search, FAISS, text-to-SQL, structured outputs, schema validation  
+**AI quality and governance:** Prompt engineering, guardrails, hallucination controls, human-in-the-loop escalation, exception handling, LLM evaluation, benchmarking, regression testing  
+**ML, NLP, and document intelligence:** Scikit-learn, spaCy, NLTK, Tesseract OCR, entity resolution, token classification, anomaly detection, fuzzy matching, phonetic matching  
+**Backend and data:** Python, FastAPI, Flask, REST APIs, SQL, PostgreSQL, SQL Server, Supabase  
+**Cloud and enterprise integration:** AWS, Amazon S3, Azure Speech Services, Azure Bot Service, Azure Functions, Azure Logic Apps, SharePoint, Microsoft Dynamics 365, Power Automate, Copilot Studio  
+**DevOps and reporting:** Git, GitLab, CloudBees CI/CD, Azure DevOps, Docker, APScheduler, Power BI, Tableau
 
-### PROFESSIONAL EXPERIENCE
+## Experience
 
-EY GDS | Senior GenAI Consultant
- *November 2025–Present | Chennai, India*
+### EY GDS | Senior GenAI Consultant
 
-- Lead 5–6 developers, mentoring 2–3 junior engineers on RAG microservices and LangGraph agent orchestration for business intelligence and insurance training applications.
-- Own architecture, module development, regression testing, and AWS releases through GitLab and CloudBees; implement scheduled ingestion to refresh agent knowledge.
-- Delivered a BI assistant across two phases through client handover and deployed an insurance voice simulator used by 1,000+ employees for evaluations.
+*November 2025–Present | Chennai, India*
 
-Qentelli Solutions | Senior Software Engineer
- *June 2024–October 2025 | Hyderabad, India*
+- Lead a team of 5–6 developers and mentor 2–3 junior engineers on RAG microservices, LangGraph orchestration, and enterprise GenAI delivery.
+- Own solution architecture, module development, testing, scheduled knowledge ingestion, and AWS release delivery through GitLab and CloudBees.
+- Delivered a business-intelligence assistant through two implementation phases and client handover; deployed an insurance voice simulator used by 1,000+ employees for evaluations.
 
-- Led data science and engineering teams of 3–5, translating client requirements into architectures and coordinating enterprise data access with department heads.
-- Built multi-agent finance assistants, RAG applications, and OCR-based invoice, inventory, and health analytics workflows for client environments.
-- Owned backend architecture, APIs, database schemas, and LLM workflows for client-funded PocketFi and Job-hunt POCs.
+### Qentelli Solutions | Senior Software Engineer
 
-Ernst & Young LLP — EY India | Senior Consultant
- *May 2021–May 2024 | Bangalore, India*
+*June 2024–October 2025 | Hyderabad, India*
 
-- Developed ML/NLP solutions for sanctions screening, transaction monitoring, and conversational banking; integrated inference into client automation pipelines.
-- Implemented hybrid entity matching, supervised scoring, and rule-based automation with Fircosoft integration.
-- Reduced false positives from 55% to 10% on millions of transactions; daily flagged-transaction review from ~3 days to ~3 hours, with 2% escalated for manual review.
-- Collaborated with compliance stakeholders on requirements, deployment, investigation workflows, and junior-developer guidance.
+- Led cross-functional data science and engineering teams of 3–5, translating client requirements into technical architectures and coordinating enterprise data access.
+- Built multi-agent finance assistants, RAG and text-to-SQL applications, and OCR-based document-processing workflows for invoices, inventory, and health analytics.
+- Owned FastAPI backends, REST APIs, database schemas, cloud integrations, and LLM workflows for client-funded products and enterprise POCs.
 
-City Union Bank Ltd | Associate
- *January 2018–August 2019 | Chennai, India*
+### Ernst & Young LLP — EY India | Senior Consultant
 
-- Handled retail banking operations, customer verification, transaction reconciliation, and core banking validation.
+*May 2021–May 2024 | Bangalore, India*
 
----
+- Developed ML/NLP solutions for sanctions screening, transaction monitoring, and conversational banking; integrated model inference into client automation pipelines.
+- Built hybrid entity-matching, supervised scoring, and rules-based screening workflows integrated with Fircosoft REST APIs.
+- Reduced sanctions-screening false positives from 55% to 10% across millions of transactions; reduced daily flagged-transaction processing from approximately 3 days to 3 hours, with 2% of screening cases routed for manual review.
+- Partnered with compliance stakeholders on requirements, deployment, investigation workflows, and junior-engineer development.
 
-### KEY PROJECTS
+### City Union Bank Ltd | Associate
 
-**1. Enterprise Finance & Operations Chatbot | Qentelli — Big Four Client**
+*January 2018–August 2019 | Chennai, India*
 
-- **Objective:** Provide leadership a single conversational interface for service-line reporting, budgets, forecasts, and P&L across the organization.
-- **Responsibilities:** 
-  - Built the agentic platform from scratch and coordinated data access across Finance, Marketing, Operations, Infrastructure, and HR.
-  - Implemented LangGraph multi-agent delegation, workflow state, and tool integration on Azure OpenAI and Azure AI Foundry with Azure AI Search retrieval.
-  - Applied structured tool outputs, schema validation, guardrails, and human-in-the-loop escalation via Azure Bot Service, Functions, and Logic Apps.
-  - Delivered event-driven production deployment used by leadership for financial information and reporting.
-- **Tools:** Python, LangGraph, LangChain, Azure OpenAI, Azure AI Foundry, Azure AI Search, Groq API, Azure Bot Service, Azure Functions, Azure Logic Apps.
+- Managed retail banking operations, customer verification, transaction reconciliation, and core banking validation.
 
-**2. AI for BI — Business Intelligence Assistant | EY GDS**
+## Selected projects
 
-- **Objective:** Enable leadership and developer teams to query insurance documents, SharePoint files, charts, dashboards, and transactional data conversationally.
-- **Responsibilities:** 
-  - Built LangGraph/LangChain RAG and agent modules over thousands of insurance documents, SharePoint files, and charts.
-  - Integrated APScheduler-based ingestion, real-time retrieval, and schema-checked SQL generation against PostgreSQL for structured questions.
-  - Regression-tested prompts and answers; owned AWS releases through GitLab and CloudBees across two delivery phases.
-  - Completed client handover of the live assistant with 5–20 second responses depending on query complexity and conversation length.
-- **Tools:** Python, LangGraph, LangChain, OpenAI GPT-4, APScheduler, AWS, Amazon S3, SharePoint, PostgreSQL, GitLab, CloudBees CI/CD.
+### Enterprise Finance & Operations Chatbot | Qentelli — Big Four Client
 
-**3. Health Analytics & Interpretation Dashboard | Qentelli**
+**Project overview:** Agentic AI chatbot that gives leadership a consolidated view of financial, workforce, infrastructure, operations, and marketing information.
 
-- **Objective:** Convert medical documents and readings into health scores, trends, and conversational insights.
-- **Responsibilities:** 
-  - Built OCR, NLP, and LLM pipelines to extract and interpret structured and unstructured medical documents and readings.
-  - Integrated ML-based health scoring and anomaly detection with Power BI/Tableau dashboards.
-  - Deployed a conversational assistant on Azure Bot Service for personalized recommendations from processed health data.
-  - Delivered an end-to-end workflow from document ingestion through scored insights and chat-based guidance.
-- **Tools:** Python, OpenAI GPT, LangChain, OCR, NLP, Azure Bot Service, Power BI, Tableau.
+**Business context:** Reporting data was distributed among departmental systems and teams. The solution used specialized AI agents to collect departmental inputs and orchestrate a leadership-ready response.
 
-**4. Invoice Processing & Inventory Intelligence | Qentelli — Fastener Domain**
+**Contributions and outcomes:**
 
-- **Objective:** Automate invoice extraction, product classification, and quotation-to-inventory matching in the client ERP environment.
-- **Responsibilities:** 
-  - Built intelligent document processing using Tesseract OCR and NLP on multi-format invoices.
-  - Mapped extracted products to catalogue master data and matched quotations to inventory for availability and estimates.
-  - Automated ingestion and processing through Microsoft Dynamics 365 and Power Automate.
-  - Delivered document-to-decision automation integrated with the client’s enterprise systems.
-- **Tools:** Python, Tesseract OCR, NLP, Microsoft Dynamics 365, Power Automate, SQL.
+- Built the platform from scratch and coordinated data access across Finance, HR, Infrastructure, Marketing, and Operations.
+- Designed specialist agents for HR resource onboarding, infrastructure spend, finance budgets and P&L, and marketing digital-spend and reach analysis.
+- Implemented LangGraph workflow orchestration to route questions to appropriate agents, combine departmental findings, and supervise final responses.
+- Added Azure AI Search retrieval, structured outputs, schema validation, guardrails, and human escalation for exception scenarios.
+- Delivered event-driven integrations through Azure Bot Service, Azure Functions, and Azure Logic Apps.
 
-**5. Mock Call Simulator — Insurance Employee Training | EY GDS**
+**Tools:** Python, LangGraph, LangChain, Azure OpenAI, Azure AI Foundry, Azure AI Search, Azure Bot Service, Azure Functions, Azure Logic Apps, Groq API
 
-- **Objective:** Evaluate insurance employees on product knowledge, customer handling, and empathy through realistic simulated calls.
-- **Responsibilities:** 
-  - Built ~50 dynamic personas and difficulty levels (three topics each) with LangGraph call-state management.
-  - Integrated Azure Speech Services with RAG and multi-step agent workflows in FastAPI; optimized prompts to reduce redundant LLM calls.
-  - Deployed both phases on AWS through GitLab and CloudBees with exception handling for out-of-scenario turns.
-  - Supported production evaluations for 1,000+ employees.
-- **Tools:** Python, FastAPI, LangGraph, LangChain, OpenAI GPT models, Azure Speech Services, AWS, GitLab, CloudBees CI/CD.
+### AI for BI — Business Intelligence Assistant | EY GDS
 
-**6. AML Sanctions & Name Screening Engine | EY India**
+**Project overview:** Conversational business-intelligence application that combines document RAG and structured database retrieval for insurance leadership and development teams.
 
-- **Objective:** Identify high-risk sanctions watchlist matches and automate daily screening while retaining human review for investigable cases.
-- **Responsibilities:** 
-  - Built hybrid fuzzy, semantic, and phonetic matching with supervised ML; integrated Fircosoft REST APIs on client-managed AWS.
-  - Integrated scoring and alerts into client automation and compliance investigation workflows.
-  - Deployed screening components supporting millions of banking transactions.
-  - Reduced false-positive rate from 55% to 10%; cut flagged-transaction processing from ~3 days to ~3 hours per daily batch, with 2% escalated for manual review.
-- **Tools:** Python, SQL, Scikit-learn, spaCy, Fircosoft REST APIs, Power BI, AWS.
+**Business context:** Users needed faster access to insights across insurance documents, SharePoint files, charts, dashboards, and transactional systems without manually searching each source.
 
-**7. Database Query Chatbot — Text-to-SQL & RAG | Qentelli**
+**Contributions and outcomes:**
 
-- **Objective:** Enable users to query enterprise databases using natural language.
-- **Responsibilities:**
-  - Developed LLM-based SQL generation with FAISS contextual retrieval for relevant database information.
-  - Validated generated queries against the schema before execution and summarized the returned results.
-  - Built backend services and deployed them through CI/CD with monitoring.
-- **Tools:** Python, LangChain, Azure OpenAI, FAISS, SQL Server, Flask, Azure DevOps.
+- Built LangGraph and LangChain RAG modules over thousands of insurance documents, SharePoint files, charts, and data sources.
+- Implemented APScheduler-based ingestion to refresh indexed knowledge and maintain current chatbot information.
+- Designed schema-validated text-to-SQL workflows against PostgreSQL for structured questions and grounded answers in retrieved records and documents.
+- Achieved 5–20 second response times based on query complexity and conversation length.
+- Led regression testing, AWS release delivery across two phases, and application handover to the client.
 
-**8. PocketFi — AI-Assisted Personal Finance | Qentelli**
+**Tools:** Python, LangGraph, LangChain, OpenAI GPT-4, PostgreSQL, SharePoint, Amazon S3, AWS, APScheduler, GitLab, CloudBees CI/CD
 
-- **Objective:** Build a client-funded personal finance POC with AI-generated insights.
-- **Responsibilities:**
-  - Owned end-to-end architecture and FastAPI backend development for the client product concept.
-  - Designed PostgreSQL/Supabase schemas and implemented LLM-based financial insight modules.
-  - Delivered the POC backend prepared for investor rollout.
-- **Tools:** Python, FastAPI, PostgreSQL, Supabase, Groq API, Google Gemini.
+### Mock Call Simulator — Insurance Employee Training | EY GDS
 
-**9. Job-hunt — AI-Assisted Job Search & CV Matching | Qentelli**
+**Project overview:** Voice-based AI simulation platform for evaluating employee product knowledge, customer handling, and empathy in insurance conversations.
 
-- **Objective:** Support job discovery, CV matching, and application assistance through a client-funded POC.
-- **Responsibilities:**
-  - Owned Phase 1 application architecture, backend services, and the data model.
-  - Built the LLM matching workflow to compare candidate information with job requirements.
-  - Completed Phase 1; Phase 2 development remains pending.
-- **Tools:** Python, FastAPI, PostgreSQL, Supabase, Groq API, Google Gemini.
+**Business context:** The training organization required scalable and consistent employee evaluations without relying solely on live role-play sessions.
 
-**10. Banking Transaction Monitoring | EY India**
+**Contributions and outcomes:**
 
-- **Objective:** Detect suspicious transaction patterns and support compliance investigations.
-- **Responsibilities:**
-  - Developed anomaly-detection models and features using transactional patterns and behavioral data.
-  - Integrated model outputs and alerts into client pipelines and compliance dashboards.
-  - Deployed components using Docker and CI/CD, collaborating with stakeholders on requirements.
-- **Tools:** Python, Scikit-learn, SQL, Docker, Azure DevOps, Tableau.
+- Designed approximately 50 dynamic customer personas based on demographic attributes, backstory, tone, and voice characteristics.
+- Built configurable call journeys across three topics per difficulty level, using LangGraph to maintain multi-turn conversation state.
+- Integrated FastAPI, Azure Speech Services, RAG, and multi-step agent workflows; optimized prompts to reduce redundant LLM calls.
+- Deployed two phases on AWS, supporting evaluations for more than 1,000 employees.
 
-**11. Banking NLP Chatbot | EY India**
+**Tools:** Python, FastAPI, LangGraph, LangChain, OpenAI GPT, Azure Speech Services, AWS, GitLab, CloudBees CI/CD
 
-- **Objective:** Enable conversational queries about banking products and account information.
-- **Responsibilities:**
-  - Built NLP intent-classification and entity-extraction pipelines for banking queries.
-  - Worked with banking teams to map structured product information and integrate backend access through REST APIs.
-  - Delivered the application as an operational pilot.
-- **Tools:** Python, NLTK, spaCy, REST APIs.
+### Invoice Processing, Inventory & Quotation Intelligence | Qentelli — Fastener Domain
 
----
+**Project overview:** Multi-agent document-processing and CRM workflow that standardizes invoices and quotations, validates inventory, prices quotations, and supports procurement and delivery tracking.
 
-### CERTIFICATIONS
+**Business context:** Invoices and quotations originated from multiple channels and formats. Sales, procurement, inventory, and logistics teams needed one workflow to standardize documents, validate stock, and manage quotation fulfilment.
+
+**Contributions and outcomes:**
+
+- Built OCR and LLM extraction workflows to process multi-format invoices and quotations and refine them into standardized templates.
+- Used Copilot Studio to convert catalogue books covering 4,000+ fastener products into an inventory master catalogue for product identification and pricing.
+- Designed multi-agent workflows to extract document data, validate products, check stock, generate price quotations, and identify procurement requirements.
+- Integrated CRM, inventory, procurement, and logistics workflows through Microsoft Dynamics 365 and Power Automate.
+- Enabled sales teams to access standardized quotations, availability, pricing, and delivery-status information through one automated pipeline.
+
+**Tools:** Python, Tesseract OCR, LLMs, Copilot Studio, NLP, SQL, Microsoft Dynamics 365, Power Automate
+
+### Health Analytics & Employee Wellness Intelligence | Qentelli
+
+**Project overview:** AI-powered employee-wellness platform that standardizes health documents and readings into health scores, trend views, and data-informed wellness insights.
+
+**Business context:** HR wellness teams needed a structured approach to interpret multiple medical-report formats, combine authorized employee profile data, and monitor wellness indicators.
+
+**Contributions and outcomes:**
+
+- Built OCR, NLP, and LLM workflows to extract health information from medical reports, images, scans, and test documents and standardize it for analysis.
+- Integrated employee profiles from the HR database with the application frontend to create authorized health and wellness views.
+- Designed health-scoring metrics and anomaly-detection workflows using medical-test values and extracted health indicators.
+- Produced LLM-generated health insights and wellness suggestions, supported by dashboards and snapshot views for authorized trend monitoring.
+
+**Tools:** Python, OpenAI GPT, LangChain, OCR, NLP, Scikit-learn, Azure Bot Service, Power BI, Tableau, HR Database
+
+### AML Sanctions & Name Screening Engine | EY India
+
+**Project overview:** Banking-compliance screening engine that prioritizes sanctions-watchlist matches and automates daily transaction screening while preserving a human investigation path.
+
+**Business context:** Manual sanctions screening generated a high volume of false-positive matches and required several days of team effort to process daily flagged transactions.
+
+**Contributions and outcomes:**
+
+- Built hybrid fuzzy, semantic, and phonetic entity-matching pipelines with supervised ML and rules-based scoring.
+- Integrated the screening engine with Fircosoft REST APIs and client-managed AWS automation pipelines.
+- Supported screening across millions of banking transactions while routing high-risk and uncertain matches through compliance investigation workflows.
+- Reduced false positives from 55% to 10%.
+- Reduced daily flagged-transaction processing from approximately 3 days to 3 hours, with 2% of screening cases routed for manual review.
+
+**Tools:** Python, SQL, Scikit-learn, spaCy, Fircosoft REST APIs, AWS, Power BI
+
+## Certifications
 
 - Microsoft Certified: Azure AI Engineer Associate — AI-102
 - Microsoft Certified: Azure Fundamentals — AZ-900
 - GitHub Copilot Certification
 
----
+## Education
 
-### EDUCATION
+### Great Lakes Institute of Management
 
-**Great Lakes Institute of Management**  
 PGPM — Data Science and Engineering | *September 2019–March 2020*
 
-**SASTRA University**  
+### SASTRA University
+
 B.Tech — Biotechnology | *June 2013–May 2017*
