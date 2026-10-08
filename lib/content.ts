@@ -6,6 +6,10 @@ export const person = {
   phone: "+91 8344022298",
   linkedin: "https://linkedin.com/in/aswath-ramana",
   github: "https://github.com/madaswath",
+  resume: {
+    href: "/Aswath_Ramana_SeniorGenAI_Resume.pdf",
+    filename: "Aswath_Ramana_SeniorGenAI_Resume.pdf",
+  },
   summary:
     "Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and enterprise automation for banking, insurance, and financial services. The work focuses on agentic AI systems and RAG applications, text-to-SQL and intelligent document processing, and ML and NLP for banking compliance. Delivery is on AWS and Azure, including Amazon S3, Azure OpenAI, Azure AI Foundry, Azure AI Search, Azure Speech Services, Azure Bot Service, Azure Functions, and Azure Logic Apps, using Python, LangGraph, and LangChain. Technical delivery runs from requirements and architecture through implementation, testing, deployment, and client handover.",
 } as const;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   Bot,
   Clock3,
+  Download,
   Link2,
   Mail,
   Phone,
@@ -77,7 +78,7 @@ export function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="scroll-mt-24 mx-auto w-full max-w-[1120px] px-5 pt-12 pb-8 md:px-8 md:pt-16">
+    <section id="top" className="page-wrap scroll-mt-24 flex min-h-[calc(100svh-4.25rem)] flex-col justify-center py-10 md:py-12">
       <p className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f1] bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">
         <span className="size-1.5 rounded-full bg-[#9a7840]" aria-hidden="true" />
         {person.role}
@@ -86,12 +87,12 @@ function Hero() {
         </span>
         <span className="tracking-normal text-[#51627a] normal-case">{person.location}</span>
       </p>
-      <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
-        <div>
+      <div className="mt-6 grid w-full items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:items-stretch">
+        <div className="flex min-w-0 flex-col justify-center">
           <h1 className="whitespace-nowrap font-serif text-[clamp(1.85rem,4.6vw,4.25rem)] leading-none tracking-tight text-[#1b2d4f]">
             Aswath <span className="text-[#9a7840]">Ramana</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[#31445f]">{person.summary}</p>
+          <p className="mt-5 max-w-4xl text-base leading-7 text-[#31445f] xl:text-lg xl:leading-8">{person.summary}</p>
         </div>
         <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-xl lg:mx-0 lg:aspect-auto lg:h-full lg:max-w-none">
           <Image
@@ -111,7 +112,7 @@ function Hero() {
 function Work() {
   return (
     <section id="work" aria-labelledby="work-heading" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8">
+      <div className="page-wrap py-16">
         <SectionIntro id="work-heading" title="Key projects and deliverables" />
         <div className="mt-8 space-y-8">
           {projects.map((project) => (
@@ -130,17 +131,23 @@ function ProjectArticle({ project }: { project: Project }) {
       <h3 className="mt-2 font-serif text-3xl tracking-tight text-[#1b2d4f]">{project.name}</h3>
       <p className="mt-1 text-sm font-medium text-[#51627a]">{project.context}</p>
       <p className="mt-5 rounded-2xl bg-[#f4f1ea] px-4 py-3 text-sm leading-6 text-[#1b2d4f]">{project.outcome}</p>
-      <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Business context</h4>
-      <p className="mt-2 text-sm leading-6 text-[#31445f]">{project.challenge}</p>
-      <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Contributions</h4>
-      <ul className="mt-2 space-y-2 text-sm leading-6 text-[#31445f]">
-        {project.approach.map((step) => (
-          <li key={step} className="flex gap-3">
-            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
-            <span>{step}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-6 grid gap-6 xl:grid-cols-2">
+        <div>
+          <h4 className="text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Business context</h4>
+          <p className="mt-2 text-sm leading-6 text-[#31445f]">{project.challenge}</p>
+        </div>
+        <div>
+          <h4 className="text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Contributions</h4>
+          <ul className="mt-2 space-y-2 text-sm leading-6 text-[#31445f]">
+            {project.approach.map((step) => (
+              <li key={step} className="flex gap-3">
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
+                <span>{step}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       <h4 className="mt-6 text-xs font-semibold tracking-[0.14em] text-[#9a7840] uppercase">Tools</h4>
       <ul className="mt-3 flex flex-wrap gap-2">
         {project.tools.map((tool) => (
@@ -156,7 +163,7 @@ function ProjectArticle({ project }: { project: Project }) {
 function Experience() {
   return (
     <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8">
+      <div className="page-wrap py-16">
         <SectionIntro id="experience-heading" title="Experience" />
         <ol className="mt-10 space-y-6">
           {experience.map((role) => (
@@ -174,7 +181,7 @@ function Experience() {
                   ) : null}
                 </div>
               </div>
-              <ul className="mt-5 space-y-3 border-t border-[#eef1f6] pt-5 text-sm leading-6 text-[#31445f]">
+              <ul className="mt-5 grid gap-3 border-t border-[#eef1f6] pt-5 text-sm leading-6 text-[#31445f] xl:grid-cols-2">
                 {role.achievements.map((line) => (
                   <li key={line} className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#9a7840]" aria-hidden="true" />
@@ -193,27 +200,20 @@ function Experience() {
 function Capabilities() {
   return (
     <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 md:px-8 md:py-12">
+      <div className="page-wrap py-10 md:py-12">
         <SectionIntro id="skills-heading" title="Technical skills" />
-        <p className="mt-3 text-sm text-[#51627a]">Open a group to see the tools in it.</p>
-        <div className="mt-6 space-y-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {capabilities.map((group) => (
-            <details key={group.category} className="group rounded-3xl border border-[#e4e9f1] bg-white shadow-sm">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5">
-                <span>
-                  <span className="block font-serif text-2xl text-[#1b2d4f]">{group.category}</span>
-                  <span className="mt-1 block text-sm text-[#51627a]">{group.skills.length} skills</span>
-                </span>
-                <DisclosureMark />
-              </summary>
-              <ul className="flex flex-wrap gap-2 border-t border-[#eef1f6] px-5 py-4">
+            <article key={group.category} className="rounded-3xl border border-[#e4e9f1] bg-white p-5 shadow-sm">
+              <h3 className="font-serif text-2xl text-[#1b2d4f]">{group.category}</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
                   <li key={skill} className="rounded-full bg-[#eef2f7] px-3 py-1.5 text-sm text-[#1b2d4f]">
                     {skill}
                   </li>
                 ))}
               </ul>
-            </details>
+            </article>
           ))}
         </div>
       </div>
@@ -224,7 +224,7 @@ function Capabilities() {
 function Achievements() {
   return (
     <section id="achievements" aria-labelledby="impact-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+      <div className="page-wrap py-16 md:py-20">
         <SectionIntro id="impact-heading" title="Career highlights" />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {metrics.map((metric) => {
@@ -249,7 +249,7 @@ function Achievements() {
 function Credentials() {
   return (
     <section id="credentials" aria-labelledby="credentials-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
+      <div className="page-wrap py-16 md:py-20">
         <SectionIntro id="credentials-heading" title="Certifications" />
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {certifications.map((item) => (
@@ -286,107 +286,111 @@ function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8 md:py-20">
-        <div className="rounded-[2rem] bg-[#1b2d4f] px-6 py-10 text-white md:px-12 md:py-14">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-            <div>
-              <h2 id="contact-heading" className="font-serif text-4xl md:text-5xl">
-                Get in touch
-              </h2>
-              <p className="mt-4 max-w-xl text-[#d5deea]">
-                For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, or open the profiles below.
-              </p>
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {email ? (
-                  <li>
-                    <a href={email} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
-                      <Mail className="size-4" aria-hidden="true" />
-                      {person.email}
-                    </a>
-                  </li>
-                ) : null}
-                {phone ? (
-                  <li>
-                    <a href={phone} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
-                      <Phone className="size-4" aria-hidden="true" />
-                      {person.phone}
-                    </a>
-                  </li>
-                ) : null}
-                {linkedin ? (
-                  <li>
-                    <a
-                      href={linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
-                    >
-                      <Link2 className="size-4" aria-hidden="true" />
-                      LinkedIn
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  </li>
-                ) : null}
-                {github ? (
-                  <li>
-                    <a
-                      href={github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
-                    >
-                      <Link2 className="size-4" aria-hidden="true" />
-                      GitHub
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  </li>
-                ) : null}
-              </ul>
-            </div>
-            <div className="flex flex-col gap-3">
+      <div className="bg-[#1b2d4f] text-white">
+        <div className="page-wrap grid gap-8 py-16 md:py-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div>
+            <h2 id="contact-heading" className="font-serif text-4xl md:text-5xl">
+              Get in touch
+            </h2>
+            <p className="mt-4 max-w-3xl text-[#d5deea]">
+              For a lead AI engineering role, a hands-on AI engineer seat, or deployment into a client environment. Email, call, download the resume, or open the profiles below.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              <li>
+                <a
+                  href={person.resume.href}
+                  download={person.resume.filename}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-sm font-semibold text-[#1b2d4f]"
+                >
+                  <Download className="size-4" aria-hidden="true" />
+                  Download resume (PDF)
+                </a>
+              </li>
+              {email ? (
+                <li>
+                  <a href={email} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
+                    <Mail className="size-4" aria-hidden="true" />
+                    {person.email}
+                  </a>
+                </li>
+              ) : null}
+              {phone ? (
+                <li>
+                  <a href={phone} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm">
+                    <Phone className="size-4" aria-hidden="true" />
+                    {person.phone}
+                  </a>
+                </li>
+              ) : null}
+              {linkedin ? (
+                <li>
+                  <a
+                    href={linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
+                  >
+                    <Link2 className="size-4" aria-hidden="true" />
+                    LinkedIn
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ) : null}
+              {github ? (
+                <li>
+                  <a
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm"
+                  >
+                    <Link2 className="size-4" aria-hidden="true" />
+                    GitHub
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ) : null}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <Button
+              nativeButton={false}
+              render={<a href={person.resume.href} download={person.resume.filename} />}
+              className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
+            >
+              <Download className="size-4" aria-hidden="true" />
+              Download resume
+            </Button>
+            <Button
+              nativeButton={false}
+              render={<a href="#work" />}
+              variant="outline"
+              className="h-12 rounded-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10"
+            >
+              View key projects
+            </Button>
+            {email ? (
               <Button
                 nativeButton={false}
-                render={<a href="#work" />}
-                className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
+                render={<a href={email} />}
+                variant="outline"
+                className="h-12 rounded-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10"
               >
-                View key projects
+                Email me
               </Button>
-              {email ? (
-                <Button
-                  nativeButton={false}
-                  render={<a href={email} />}
-                  variant="outline"
-                  className="h-12 rounded-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10"
-                >
-                  Email me
-                </Button>
-              ) : null}
-            </div>
+            ) : null}
           </div>
         </div>
-        <SiteFooter />
       </div>
+      <SiteFooter />
     </section>
-  );
-}
-
-function DisclosureMark() {
-  return (
-    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-[#e4e9f1] text-lg leading-none text-[#1b2d4f]">
-      <span className="group-open:hidden" aria-hidden="true">
-        +
-      </span>
-      <span className="hidden group-open:block" aria-hidden="true">
-        –
-      </span>
-    </span>
   );
 }
 
 function SiteFooter() {
   return (
     <footer className="border-t border-[#e4e9f1]">
-      <p className="mx-auto w-full max-w-[1120px] px-5 py-8 text-center text-sm text-[#51627a] md:px-8">
+      <p className="page-wrap py-8 text-center text-sm text-[#51627a]">
         {person.name} · {person.role} · {person.location}
       </p>
     </footer>

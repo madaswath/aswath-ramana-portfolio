@@ -5,7 +5,7 @@ import { nav, person } from "@/lib/content";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-[#e4e9f1] bg-white/92 backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-[1120px] items-center justify-between gap-4 px-5 py-3 md:px-8">
+      <div className="page-wrap flex items-center justify-between gap-4 py-3">
         <a href="#top" className="font-serif text-xl tracking-tight text-[#1b2d4f]">
           <span className="sr-only">Home, </span>
           {person.name}
