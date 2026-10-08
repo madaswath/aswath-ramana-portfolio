@@ -63,7 +63,7 @@ Senior Generative AI Engineer with 7 years of experience delivering AI, ML, and 
 
 - Managed retail banking operations, customer verification, transaction reconciliation, and core banking validation.
 
-## Selected projects
+## Key projects and deliverables
 
 ### Enterprise Finance & Operations Chatbot | Qentelli — Big Four Client
 

@@ -379,7 +379,7 @@ export const education = [
 ] as const;
 
 export const nav = [
-  { href: "#work", label: "Projects" },
+  { href: "#work", label: "Key projects" },
   { href: "#experience", label: "Experience" },
   { href: "#achievements", label: "Highlights" },
   { href: "#skills", label: "Skills" },

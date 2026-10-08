@@ -115,7 +115,7 @@ function Work() {
   return (
     <section id="work" aria-labelledby="work-heading" className="scroll-mt-24">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-16 md:px-8">
-        <SectionIntro id="work-heading" title="Selected projects" />
+        <SectionIntro id="work-heading" title="Key projects and deliverables" />
         <div className="mt-8 space-y-8">
           {projects.map((project) => (
             <ProjectArticle key={project.name} project={project} />
@@ -353,7 +353,7 @@ function Contact() {
                 render={<a href="#work" />}
                 className="h-12 rounded-full bg-white px-6 text-[#1b2d4f] hover:bg-[#f3efe6]"
               >
-                View projects
+                View key projects
               </Button>
               {email ? (
                 <Button
